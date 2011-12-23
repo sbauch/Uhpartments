@@ -14,7 +14,7 @@ development:
   database: uhpartments1_development
   pool: 5
   username: postgres
-  password: '@##csa3141598'
+  password: 
   schema_search_path: public,postgis  
   port: 5432
 

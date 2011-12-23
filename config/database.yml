@@ -13,10 +13,10 @@ development:
   encoding: utf8
   database: uhpartments1_development
   pool: 5
-  username: admin
-  password:
+  username: postgres
+  password: '@##csa3141598'
   schema_search_path: public,postgis  
-  port: 5433 
+  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -26,15 +26,17 @@ test:
   encoding: utf8
   database: uhpartments1_test
   pool: 5
-  username: admin
-  password:
+  username: postgres
+  password: 
   schema_search_path: public,postgis     
-
+  port: 5432
+  
 production:
   adapter: postgresql
   encoding: utf8
   database: uhpartments1_production
   pool: 5
-  username: admin
-  password:
+  username: postgres
+  password: 
   schema_search_path: public,postgis     
+  port: 5432

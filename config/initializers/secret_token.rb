@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Uhpartments::Application.config.secret_token = '138ade68078071ebc1e6028736c70b7f1deccac486cec2869e693bbee783ce66011bbeca962cc80c6a3a9aa24cf3e9c7e25d6116dad779f82410d224c5717f43'
+Badnycm::Application.config.secret_token = 'b00751b564894f7c387ae6371db1d03e1c5df9f2f05803154d4b723201291be9b3a07a25f836647a9236c150fd24386b351099f0bf69a3ddc92943d9bcda8685'

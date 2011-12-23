@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Building:</b>
+  <%= @incident.building_address %>
+</p>
+
+<p>
+  <b>Agency:</b>
+  <%= @incident.agency %>
+</p>
+
+<p>
+  <b>Complaint type:</b>
+  <%= @incident.complaint_type %>
+</p>
+
+<p>
+  <b>Descriptor:</b>
+  <%= @incident.descriptor %>
+</p>
+
+<p>
+  <b>Created:</b>
+  <%= @incident.created %>
+</p>
+
+<p>
+  <b>Closed:</b>
+  <%= @incident.closed %>
+</p>
+<p>
+	<b>Elapsed Time</b>
+	<%= @incident.calculate_elapsed %>
+	</p>
+
+
+<%= link_to 'Edit', edit_incident_path(@incident) %> |
+<%= link_to 'Back', incidents_path %>

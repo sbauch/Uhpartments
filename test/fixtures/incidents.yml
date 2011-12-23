@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  building_address: MyString
+  agency: MyString
+  complaint_type: MyString
+  descriptor: MyString
+  created: 2011-11-14
+  closed: 2011-11-14
+
+two:
+  building_address: MyString
+  agency: MyString
+  complaint_type: MyString
+  descriptor: MyString
+  created: 2011-11-14
+  closed: 2011-11-14

@@ -1,0 +1,71 @@
+<div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <div class="brand"><%= link_to "uh...partments", root_path %>
+	</div>
+          <ul class="nav">
+            <li><%= link_to "About", about_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="container">
+  <div class="content">
+    <div class="page-header">
+	  <center><h2><%= @building.address %>, <%= @building.city %> </h2></center>
+	</div>
+<div class="row">
+  <div class="span12" align="center"><br>
+    <h2><%= @incidents_open.count %> 
+		<% if @incidents_open.count == 1 %> Open Complaint</h2>
+		<% else %> Open Complaints </h2><% end %><br>
+    <center><table class="bordered-table" summary="building incidents" id="incidents_open" align="center">
+		  <tr>
+		    <th>Agency</th>
+		    <th>Complaint About</th>
+		    <th>Reported</th>
+		    <th>Time to Close</th>
+		  </tr>
+		<div id="incidents_open">
+<% unless @incidents_open.empty? %>      
+<%= render @incidents_open %>
+	  </table></center>
+	<% if @incidents_open.next_page %>
+	  <center><%= link_to "More", params.merge(page: @incidents_open.next_page) %></center>
+	<% end %>
+<% else %>
+</table>      
+<h4><center>(None)</center></h4>	
+<% end %>
+</div>
+
+<div class="span12" align="center">
+	<br><br><br>
+    <h2><%= @building.incidents.isclosed.count %> 
+		<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
+		<% else %> Closed Complaints </h2><% end %>
+	<br>
+      <center><table class="bordered-table" summary="building incidents" id="incidents_closed">
+	  <tr>		
+	  <th>Agency</th>
+	  <th>Complaint About</th>
+	  <th>Reported</th>
+	  <th>Time to Close</th>
+      </tr>
+</div>
+</div>
+<div class="row">
+<div id="incidents_closed">
+      <%= render @incidents_closed %>
+      </table><center>
+	<% if @incidents_closed.next_page %>
+	  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page) %></center>
+	<% end %>
+	<br><br><br>
+	</div>
+	</div>
+  </div>
+</div>
+</div>
+

@@ -1,0 +1,67 @@
+<head>
+	<link rel="shortcut icon" href="/favicon.ico" />
+</head>
+<html>
+<div class="topbar">
+      <div class="fill">
+        <div class="container">
+          	<div class="brand"><%= link_to "uh...partments", root_path %>
+		</div>
+          <ul class="nav">
+	<li class="active">
+            <li><%= link_to "About", about_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<body>
+  <div class="container">		
+	<div class="row">	
+			      <div class="span10">
+				<br><br><br>
+					<h1><center>Uhpartments for Renters</center></h1> 
+					<h2><center>Building Reports On The Go</center></h2><br>
+					<h3><center>Get a deeper look at a building while you tour it.<br>
+						        Visit uhpartments.com on your smartphone.</center></h3>
+				<br><br>
+					<form><center>
+					  <input class="btn primary large" type="button" onclick="getLocation();" value="See Buildings Near Me Now"/>
+					<p><br>We're only in NYC</p>
+					<p><%= link_to "(Example Report for non New Yorkers)", "/buildings/2354" %></li>
+						  </center>
+					</form>
+					<br>
+					<h3><center><%= link_to "Uhpartments for Brokers", brokers_path %></li> || <%= link_to "How Uhpartments Works", how_path %></center></h3>
+				  </div>
+				  <div class="span6">
+							<img src="/uhpartments.png" align="right"/>
+				  </div>
+		</div>
+	</div>	
+<script>
+function showLocation(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+                                window.location.href = ('/buildings?utf8=✓&lat='+ latitude + '&lon=' + longitude);
+                                                               } 
+								
+function errorHandler(err) {
+  if(err.code == 1) {
+    alert("Error: Access is denied!");
+  }else if( err.code == 2) {
+    alert("Error: Position is unavailable!");
+  }
+}
+function getLocation(){
+
+   if(navigator.geolocation){
+      // timeout at 60000 milliseconds (60 seconds)
+      var options = {timeout:60000};
+      navigator.geolocation.getCurrentPosition(showLocation, 
+                                               errorHandler,
+                                               options);
+   }else{
+      alert("Sorry, browser does not support geolocation!");
+   }
+}
+</script>							

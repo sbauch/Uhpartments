@@ -2,4 +2,5 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
-Uhpartments::Application.initialize!
+Badnycm::Application.initialize!
+Date::DATE_FORMATS[:default] = "%m/%d/%Y"

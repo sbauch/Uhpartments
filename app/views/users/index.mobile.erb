@@ -1,0 +1,38 @@
+<div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <div class="brand"><%= link_to "uh...partments", root_path %>
+	</div>
+          <ul class="nav">
+            <li><%= link_to "About", about_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<div class="container">
+<div class="row">
+  <div class="span16">
+<center><h2>Buildings Nearby</h2></center>
+
+<center>
+<table>
+  <tr>
+    <th>Address</th>
+    <th>City</th>
+
+  </tr>
+
+<% @buildings.each do |b| %>
+  <tr>
+    <td><%= b.address %></td>
+    <td><%= b.city %></td>
+  </tr>
+<% end %>
+</table>
+</center>
+</div>
+</div>
+</div>
+
+<br />
+

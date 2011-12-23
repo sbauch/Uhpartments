@@ -1,4 +1,14 @@
-Uhpartments::Application.routes.draw do
+Badnycm::Application.routes.draw do
+  root :to => 'pages#home'
+  match '/about',   :to => 'pages#about'
+  match '/brokers', :to => 'pages#brokers'
+  match '/how', :to => 'pages#how'
+  resources :pages
+  resources :incidents
+  resources :buildings
+  resources :users
+  post '/set_geolocation' => 'users#set_geolocation'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

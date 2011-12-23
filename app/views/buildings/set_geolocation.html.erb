@@ -1,0 +1,33 @@
+<script>
+
+navigator.geolocation.getCurrentPosition(GetLocation);
+function GetLocation(location) {
+    alert(location.coords.latitude);
+    alert(location.coords.longitude);
+    alert(location.coords.accuracy);
+$.post('/set_geolocation',{latitude: pos.coords.latitude, longitude: pos.coords.longitude})
+}
+
+</script>
+
+<h1>Buildings Nearby</h1>
+
+<table>
+  <tr>
+    <th>Address</th>
+    <th>City</th>
+
+  </tr>
+
+<% @buildings.each do |b| %>
+  <tr>
+    <td><%= b.address %></td>
+    <td><%= b.city %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Building', new_building_path %>
+<%= debug session %>

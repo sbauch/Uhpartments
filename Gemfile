@@ -14,7 +14,7 @@ gem 'rgeo'
 gem 'activerecord-mysqlspatial-adapter'
 gem 'will_paginate'
 gem 'therubyracer', require: 'v8'
-
+gem 'geocoder'
 
 # Gems used only for assets and not required
 # in production environments by default.

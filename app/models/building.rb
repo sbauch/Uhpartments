@@ -1,6 +1,7 @@
 class Building < ActiveRecord::Base
 attr_accessible :lat, :lon
-set_rgeo_factory_for_column(:latlon, RGeo::Geographic.spherical_factory(:srid => 4326))
+reverse_geocoded_by :lat, :lon
+#set_rgeo_factory_for_column(:latlon, RGeo::Geographic.spherical_factory(:srid => 4326))
 has_many :incidents, :class_name => "Incident", :foreign_key => 'building_address', :primary_key => 'address',
 end
 

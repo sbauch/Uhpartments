@@ -13,8 +13,8 @@ development:
   encoding: utf8
   database: uhpartments1_development
   pool: 5
-  username: admin
-  password:
+  username: postgres    
+  password: '@##csa3141598'
   schema_search_path: public,postgis  
   port: 5433 
 
@@ -26,8 +26,8 @@ test:
   encoding: utf8
   database: uhpartments1_test
   pool: 5
-  username: admin
-  password:
+  username: postgres    
+  password: '@##csa3141598'
   schema_search_path: public,postgis     
 
 production:
@@ -35,6 +35,6 @@ production:
   encoding: utf8
   database: uhpartments1_production
   pool: 5
-  username: admin
-  password:
+  username: postgres    
+  password: '@##csa3141598'
   schema_search_path: public,postgis     

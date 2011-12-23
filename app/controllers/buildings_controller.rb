@@ -5,7 +5,7 @@ class BuildingsController < ApplicationController
       lat = params[:lat]
        lon = params[:lon]
        #@buildings = Building.where("ST_Distance(latlon, 'POINT ("+lon.to_s+" "+ lat.to_s + ")') < 200")
-       @buildings = Building.near([lat, lon], 0.08 )
+       @buildings = Building.near([lat, lon], 0.08 ).page(params[:page]).per_page(10)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @buildings }

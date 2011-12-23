@@ -11,23 +11,22 @@
     </div>
 <div class="container">
 <div class="row">
-  <div class="span16">
+  <div class="span6">
 	<h2>Buildings Nearby</h2>
 
-<table>
-  <tr>
-    <th>Address</th>
-    <th>City</th>
-
-  </tr>
-
+<center><table class="zebra-striped">
 <% @buildings.each do |b| %>
   <tr>
     <td><%= link_to b.address, b %></td>
-    <td><%= b.city %></td>
   </tr>
 <% end %>
 </table>
+<% if @buildings.next_page %>
+
+<center><%= link_to "More", params.merge(page: @buildings.next_page) %></center>
+<% end %>
+
+</center>
 </div>
 </div>
 </div>

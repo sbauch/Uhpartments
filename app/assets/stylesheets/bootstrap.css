@@ -207,6 +207,10 @@ body {
   font-weight: normal;
   line-height: 18px;
 }
+map {
+	height: 400px;
+	width: 400px;
+}
 .container {
   width: 940px;
   margin-left: auto;

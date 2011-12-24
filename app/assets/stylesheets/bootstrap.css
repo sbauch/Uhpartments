@@ -250,7 +250,6 @@ a {
   text-decoration: none;
   line-height: inherit;
   font-weight: inherit;
-  font-size: 28px;
 }
 a:hover {
   color: #00438a;
@@ -410,7 +409,7 @@ a:hover {
  * Headings, body text, lists, code, and more for a versatile and durable typography system
  * ---------------------------------------------------------------------------------------- */
 p {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: normal;
   line-height: 22px;
   margin-bottom: 9px;
@@ -440,13 +439,15 @@ h1 {
   margin-bottom: 18px;
   font-size: 48px;
   line-height: 48px;
+  color: #4B5470;
 }
 h1 small {
   font-size: 18px;
 }
 h2 {
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 30px;
+  line-height: 48px;
+  color: #4B5470;
 }
 h2 small {
   font-size: 14px;
@@ -458,13 +459,13 @@ h6 {
   line-height: 36px;
 }
 h3 {
-  font-size: 24px;
+  font-size: 18px;
 }
 h3 small {
   font-size: 14px;
 }
 h4 {
-  font-size: 16px;
+  font-size: 14px;
 }
 h4 small {
   font-size: 12px;
@@ -1124,7 +1125,7 @@ table {
   width: 100%;
   margin-bottom: 18px;
   padding: 0;
-  font-size: 18px;
+  font-size: 14px;
   border-collapse: collapse;
 }
 table th, table td {
@@ -1980,7 +1981,7 @@ footer {
   box-shadow: none;
 }
 .btn.large {
-  font-size: 24px;
+  font-size: 18px;
   line-height: normal;
   padding: 9px 14px 9px;
   -webkit-border-radius: 6px;

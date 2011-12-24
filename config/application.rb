@@ -1,5 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 require 'active_record/connection_adapters/postgis_adapter/railtie'
 if defined?(Bundler)
@@ -11,6 +10,7 @@ end
 
 module Badnycm
   class Application < Rails::Application
+    config.assets.enabled = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

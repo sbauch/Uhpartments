@@ -47,9 +47,9 @@ function showLocation(position) {
 								
 function errorHandler(err) {
   if(err.code == 1) {
-    alert("Error: Access is denied!");
+    alert("We need your location, dummy. Try again.");
   }else if( err.code == 2) {
-    alert("Error: Position is unavailable!");
+    alert("We couldn't get your location. Try again. Maybe go outside?");
   }
 }
 function getLocation(){

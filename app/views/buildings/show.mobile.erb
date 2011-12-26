@@ -4,7 +4,6 @@
           <div class="brand"><%= link_to "uh...partments", root_path %>
 	</div>
           <ul class="nav">
-            <li><%= link_to "About", about_path %></li>
           </ul>
         </div>
       </div>
@@ -20,9 +19,8 @@
     <h2><%= @incidents_open.count %> 
 		<% if @incidents_open.count == 1 %> Open Complaint</h2>
 		<% else %> Open Complaints </h2><% end %><br>
-    <center><table class="bordered-table" summary="building incidents" id="incidents_open" align="center">
+    <center><table class="zebra-striped" summary="building incidents" id="incidents_open" align="center">
 		  <tr>
-		    <th>Agency</th>
 		    <th>Complaint About</th>
 		    <th>Reported</th>
 		    <th>Time to Close</th>
@@ -46,9 +44,8 @@
 		<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
 		<% else %> Closed Complaints </h2><% end %>
 	<br>
-      <center><table class="bordered-table" summary="building incidents" id="incidents_closed">
+      <center><table class="zebra-striped" summary="building incidents" id="incidents_closed">
 	  <tr>		
-	  <th>Agency</th>
 	  <th>Complaint About</th>
 	  <th>Reported</th>
 	  <th>Time to Close</th>

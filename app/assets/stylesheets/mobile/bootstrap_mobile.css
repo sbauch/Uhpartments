@@ -440,6 +440,8 @@ h1 {
   margin-bottom: 18px;
   font-size: 100px;
   line-height: 100px;
+  color: #4B5470;
+
 }
 h1 small {
   font-size: 18px;
@@ -447,6 +449,8 @@ h1 small {
 h2 {
   font-size: 48px;
   line-height: 48px;
+  color: #4B5470;
+
 }
 h2 small {
   font-size: 14px;

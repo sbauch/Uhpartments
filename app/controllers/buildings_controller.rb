@@ -24,18 +24,18 @@ class BuildingsController < ApplicationController
       format.json { render json: @building }
     end
   end
-  def set_geolocation
-    #session[:location] = "'POINT (-74.03576870006731 40.7191652733036)') < 100"
-
-   # lat = params[:latitude]
-    #lon = params[:longitude]
-    
-     #session[:location] = "POINT (" + lon.to_s + " " + lat.to_s + ")"
-     #@buildings = Building.where("POINT (" + @lon.to_s + " " + @lat.to_s + ")") < 100
-     #@buildings = Building.where("ST_Distance(latlon, "+ @loc.to_s)
-     @buildings = Building.where("ST_Distance(latlon, 'POINT (-74.03576870006731 40.6191652733036)') < 100")
-  
-  end
+  # def set_geolocation
+  #   #session[:location] = "'POINT (-74.03576870006731 40.7191652733036)') < 100"
+  # 
+  #  # lat = params[:latitude]
+  #   #lon = params[:longitude]
+  #   
+  #    #session[:location] = "POINT (" + lon.to_s + " " + lat.to_s + ")"
+  #    #@buildings = Building.where("POINT (" + @lon.to_s + " " + @lat.to_s + ")") < 100
+  #    #@buildings = Building.where("ST_Distance(latlon, "+ @loc.to_s)
+  #    @buildings = Building.where("ST_Distance(latlon, 'POINT (-74.03576870006731 40.6191652733036)') < 100")
+  # 
+  # end
 
   
 

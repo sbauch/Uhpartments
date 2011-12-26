@@ -13,7 +13,12 @@
 <div class="container">
   <div class="content">
     <div class="page-header">
-	  <h2><%= @building.address %>, <%= @building.city %> </h2>	</div>
+	  <h2><%= @building.address %>, 
+	<% if @building.city != @building.nabename.upcase %>
+		<%= @building.nabename.upcase %>, <%= @building.city %> </h2>	</div>
+		<% else %>
+		<%= @building.city %> </h2>	</div>
+		<% end %>
 <div class="row">
   <div class="span8">
     <h2><%= @incidents_open.count %> 
@@ -56,5 +61,21 @@
 	<% end %>
 	</div>
   </div>
+</div>
+<div class="row">
+<div class="span8">
+	<center><h2>Neighborhood Rental Info</h2><h3> provided by Streeteasy<h3></center>
+		<table class="bordered-table">
+			<th>Average Rental Price</th>
+			<th>Average Square Feet</th>
+			<th>Current Listings</th>
+			</tr>
+	<td>$<%= @building.streeteasy.first %></td>
+	<td><%= @building.streeteasy.second %> sqft</td>
+	<td><%= @building.streeteasy.third %></td>
+		</table>
+</div>
+<div class="span8"><center><h2>Nearby Businesses</h2><h3>provided by Foursquare</h3></center>
+<center><p>Coming Soon!</p></center>
 </div>
 </div>

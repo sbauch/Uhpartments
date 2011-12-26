@@ -4,6 +4,7 @@
   <title>uhpartments</title>
   <%= stylesheet_link_tag "application-mobile" %>
   <%= csrf_meta_tags %>
+  <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
 

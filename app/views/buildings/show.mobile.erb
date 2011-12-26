@@ -19,7 +19,7 @@
     <h2><%= @incidents_open.count %> 
 		<% if @incidents_open.count == 1 %> Open Complaint</h2>
 		<% else %> Open Complaints </h2><% end %><br>
-    <center><table class="zebra-striped" summary="building incidents" id="incidents_open" align="center">
+    <center><table class="bordered-table" summary="building incidents" id="incidents_open" align="center">
 		  <tr>
 		    <th>Complaint About</th>
 		    <th>Reported</th>
@@ -36,16 +36,16 @@
 </table>      
 <h4><center>(None)</center></h4>	
 <% end %>
-</div>
-
+</div
 <div class="span12" align="center">
 	<br><br><br>
-    <h2><%= @building.incidents.isclosed.count %> 
-		<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
+    <h2><%= @building.incidents.isclosed.count %>
+	<% if @incidents_closed.count == 1 %> 
+		 Closed Complaint</h2>
 		<% else %> Closed Complaints </h2><% end %>
 	<br>
-      <center><table class="zebra-striped" summary="building incidents" id="incidents_closed">
-	  <tr>		
+      <center><table class="bordered-table" summary="building incidents" id="incidents_closed">
+	  <tr>	
 	  <th>Complaint About</th>
 	  <th>Reported</th>
 	  <th>Time to Close</th>

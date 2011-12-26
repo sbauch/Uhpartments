@@ -411,7 +411,7 @@ a:hover {
  * ---------------------------------------------------------------------------------------- */
 p {
   font-size: 20px;
-  font-weight: normal;
+  font-weight: bold;
   line-height: 22px;
   margin-bottom: 9px;
 }
@@ -1128,13 +1128,13 @@ table {
   width: 100%;
   margin-bottom: 18px;
   padding: 0;
-  font-size: 18px;
+  font-size: 34px;
   border-collapse: collapse;
 }
 table th, table td {
   padding: 10px 10px 9px;
-  line-height: 18px;
-  text-align: left;
+  line-height: 40px;
+  text-align: center;
 }
 table th {
   padding-top: 9px;
@@ -1142,11 +1142,10 @@ table th {
   vertical-align: middle;
 }
 table td {
+	padding-top: 9px;
   vertical-align: top;
-  border-top: 1px solid #ddd;
 }
 table tbody th {
-  border-top: 1px solid #ddd;
   vertical-align: top;
 }
 .condensed-table th, .condensed-table td {
@@ -1219,7 +1218,7 @@ table .span11 {
   width: 420px;
 }
 table .span12 {
-  width: 460px;
+  width: 48px;
 }
 table .span13 {
   width: 500px;

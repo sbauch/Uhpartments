@@ -23,7 +23,8 @@
   <div class="span8">
     <h2><%= @incidents_open.count %> 
 <% if @incidents_open.count == 1 %> Open Complaint</h2>
-<% else %> Open Complaints </h2><% end %>
+<% else %> Open Complaints </h2>
+<% end %>
     <table class="bordered-table" summary="building incidents" id="incidents_open">
 		  <tr>
 		    <th>Complaint About</th>
@@ -38,8 +39,9 @@
 	  <center><%= link_to "More", params.merge(page: @incidents_open.next_page) %></center>
 	<% end %>
 <% else %>
-</table>      
-<h4><center>(None)</center></h4>	
+      </table>      
+<h4><center><br>Remember: Be Thorough!
+	<br>No complaints does not guarantee this is a good building.</center></h4>	
 <% end %>
 </div>
 
@@ -54,11 +56,17 @@
 	  <th>Time to Close</th>
       </thead>
 <div id="incidents_closed">
+<% unless @incidents_closed.empty? %>      
       <%= render @incidents_closed %>
       </table>
 	<% if @incidents_closed.next_page %>
 	  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page) %></center>
 	<% end %>
+<% else %>
+	</table>      
+	<h4><center><br>Remember: Be Thorough!
+	  <br>No complaints does not guarantee this is a good building.</center></h4>	
+<% end %>
 	</div>
   </div>
 </div>

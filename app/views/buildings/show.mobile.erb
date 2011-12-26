@@ -20,13 +20,13 @@
 		<% if @incidents_open.count == 1 %> Open Complaint</h2>
 		<% else %> Open Complaints </h2><% end %><br>
     <center><table class="bordered-table" summary="building incidents" id="incidents_open" align="center">
-		  <tr>
-		    <th>Complaint About</th>
-		    <th>Reported</th>
-		    <th>Time to Close</th>
-		  </tr>
 		<div id="incidents_open">
-<% unless @incidents_open.empty? %>      
+<% unless @incidents_open.empty? %> 
+<tr>
+  <th>Complaint About</th>
+  <th>Reported</th>
+  <th>Time to Close</th>
+</tr>     
 <%= render @incidents_open %>
 	  </table></center>
 	<% if @incidents_open.next_page %>
@@ -34,9 +34,10 @@
 	<% end %>
 <% else %>
 </table>      
-<h4><center>(None)</center></h4>	
+<h3><center><br>Remember: Be Thorough!
+	<br>No complaints does not guarantee<br> this is a good building.</center></h3>	
 <% end %>
-</div
+</div>
 <div class="span12" align="center">
 	<br><br><br>
     <h2><%= @building.incidents.isclosed.count %>
@@ -45,7 +46,8 @@
 		<% else %> Closed Complaints </h2><% end %>
 	<br>
       <center><table class="bordered-table" summary="building incidents" id="incidents_closed">
-	  <tr>	
+<% unless @incidents_closed.empty? %>   
+	<tr>	
 	  <th>Complaint About</th>
 	  <th>Reported</th>
 	  <th>Time to Close</th>
@@ -63,6 +65,28 @@
 	</div>
 	</div>
   </div>
+<div class="row">
+<div class="span16">
+	<center><h2>Neighborhood Rental Info</h2><h3> provided by Streeteasy<h3></center>
+		<table class="bordered-table">
+			<th>Average Rental Price</th>
+			<th>Average Square Feet</th>
+			<th>Current Listings</th>
+			</tr>
+	<td>$<%= @building.streeteasy.first %></td>
+	<td><%= @building.streeteasy.second %> sqft</td>
+	<td><%= @building.streeteasy.third %></td>
+		</table>
+		</div>
+<% else %>
+		</table>      
+		<h3><center><br>Remember: Be Thorough!
+		<br>No complaints does not guarantee<br> this is a good building.</center></h3>	
+<% end %>
+</div>
+<div class="row">
+<div class="span16"><center><h2>Nearby Businesses</h2><h3>provided by Foursquare</h3></center>
+<center><p>Coming Soon!</p></center>
 </div>
 </div>
 

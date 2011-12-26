@@ -12,26 +12,7 @@
  * Props to Eric Meyer (meyerweb.com) for his CSS reset file. We're using an adapted version here	that cuts out some of the reset HTML elements we will never need here (i.e., dfn, samp, etc).
  * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 html, body {
-/* IE10 */ 
-background-image: -ms-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
-
-/* Mozilla Firefox */ 
-background-image: -moz-linear-gradient(top, #FFFFFF  0%, #E3E3EF 100%);
-
-/* Opera */ 
-background-image: -o-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
-
-/* Webkit (Safari/Chrome 10) */ 
-background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #E3E3EF));
-
-/* Webkit (Chrome 11+) */ 
-background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
-
-/* Proposed W3C Markup */ 
-background-image: linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
-  background-attachment: fixed;
-  margin: 0;
-  padding-top: 40px;
+background-color: #E3E3EF 80%;
   
     }
 h1,
@@ -462,7 +443,7 @@ h6 {
   line-height: 36px;
 }
 h3 {
-  font-size: 18px;
+  font-size: 28px;
 }
 h3 small {
   font-size: 14px;

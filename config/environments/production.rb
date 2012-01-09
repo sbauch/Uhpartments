@@ -5,7 +5,7 @@ Badnycm::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # # Google Analytics
-  # GAR.tracker = "UA-27951205-1"
+   GAR.tracker = "UA-27951205-1"
 
   # Code is not reloaded between requests
   config.cache_classes = true

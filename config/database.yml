@@ -35,8 +35,5 @@ production:
   adapter: postgresql
   encoding: utf8
   database: uhpartments1_production
-  pool: 5
   username: postgres
   password: 
-  schema_search_path: public,postgis     
-  port: 5432

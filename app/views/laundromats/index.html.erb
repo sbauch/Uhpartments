@@ -1,0 +1,27 @@
+<h1>Listing laundromats</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @laundromats.each do |laundromat| %>
+  <tr>
+    <td><%= laundromat.name %></td>
+    <td><%= laundromat.lat %></td>
+    <td><%= laundromat.lon %></td>
+    <td><%= link_to 'Show', laundromat %></td>
+    <td><%= link_to 'Edit', edit_laundromat_path(laundromat) %></td>
+    <td><%= link_to 'Destroy', laundromat, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Laundromat', new_laundromat_path %>

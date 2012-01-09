@@ -1,0 +1,24 @@
+namespace :db do
+  namespace :seed do
+    require 'csv'
+    desc 'Bring in laundromats'
+    task :laundromats => :environment do 
+      uri = '/Users/Sam/Desktop/laundromats.csv'
+        CSV.read(uri, :headers => true).each do |row|
+        if row[3] == nil 
+          Laundromat.create(
+            :name => row[2],
+            :lat => row[4],
+            :lon => row[5]               
+            )
+        else
+         Laundromat.create(
+       	    :name => row[3],
+            :lat => row[4],
+            :lon => row[5]                
+            ) 
+          end
+    end
+  end
+end
+end

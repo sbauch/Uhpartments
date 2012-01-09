@@ -7,15 +7,14 @@ gem 'rails', '3.1.3'
 
 gem 'pg'
 gem 'activerecord-postgis-adapter'
-gem 'foursquare2'
 gem 'httparty'
-gem 'hashie'
 gem 'rgeo'
 gem 'activerecord-mysqlspatial-adapter'
 gem 'will_paginate'
 gem 'therubyracer', require: 'v8'
 gem 'geocoder'
 gem 'google-analytics-rails', :git => 'git://github.com/bgarret/google-analytics-rails.git'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

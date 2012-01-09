@@ -465,7 +465,8 @@ h3 small {
   font-size: 14px;
 }
 h4 {
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 16px;
 }
 h4 small {
   font-size: 12px;
@@ -1131,7 +1132,7 @@ table {
 table th, table td {
   padding: 10px 10px 9px;
   line-height: 18px;
-  text-align: center;
+  text-align: left;
 }
 table th {
   padding-top: 9px;
@@ -1141,13 +1142,13 @@ table th {
 table td {
   vertical-align: top;
   border-top: 1px solid #ddd;
-  text-align: center;
+  text-align: left;
 
 }
 table tbody th {
   border-top: 1px solid #ddd;
   vertical-align: top;
-  text-align: center;
+  text-align: left;
 
 }
 .condensed-table th, .condensed-table td {

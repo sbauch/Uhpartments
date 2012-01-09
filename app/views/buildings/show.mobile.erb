@@ -12,7 +12,14 @@
 <div class="container">
   <div class="content">
     <div class="page-header">
-	  <center><h2><%= @building.address %>, <%= @building.city %> </h2></center>
+	<br><br><br>
+	  <center>	<h2><%= @building.address %>, 
+		<% if @building.city != @building.nabename.upcase %>
+			<%= @building.nabename.upcase %>, <%= @building.city %> </h2>	</div>
+			<% else %>
+			<%= @building.city %> </h2>	</div>
+			<% end %></center>
+	
 	</div>
 <div class="row">
   <div class="span12" align="center"><br>
@@ -61,6 +68,11 @@
 	<% if @incidents_closed.next_page %>
 	  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page) %></center>
 	<% end %>
+<% else %>
+	</table>      
+	<h3><center><br>Remember: Be Thorough!
+	<br>No complaints does not guarantee<br> this is a good building.</center></h3>	
+<% end %>
 	<br><br><br>
 	</div>
 	</div>
@@ -68,25 +80,43 @@
 <div class="row">
 <div class="span16">
 	<center><h2>Neighborhood Rental Info</h2><h3> provided by Streeteasy<h3></center>
-		<table class="bordered-table">
+		    <table>
+			<th>Bedrooms</th>
 			<th>Average Rental Price</th>
 			<th>Average Square Feet</th>
-			<th>Current Listings</th>
+			<th>Current Listings</th>		
+			</tr>		
+			<td><p>Studio</p></td>		
+			<td>$<%= number_with_delimiter(@building.streeteasy_0br.first, :delimiter => ',') %></td>
+			<td><%= number_with_delimiter(@building.streeteasy_0br.second, :delimiter => ',') %> sqft</td>
+			<td><%= link_to @building.streeteasy_0br.third, @building.streeteasy_0br.fourth %></td>
+			</tr>		
+			<td><p>1 BR</p></td>		
+			<td>$<%= number_with_delimiter(@building.streeteasy_1br.first, :delimiter => ',') %></td>
+			<td><%= number_with_delimiter(@building.streeteasy_1br.second, :delimiter => ',') %> sqft</td>
+			<td><%= link_to @building.streeteasy_1br.third, @building.streeteasy_1br.fourth %></td>
 			</tr>
-	<td>$<%= @building.streeteasy.first %></td>
-	<td><%= @building.streeteasy.second %> sqft</td>
-	<td><%= @building.streeteasy.third %></td>
-		</table>
+			<td><p>2 BR</p></td>		
+			<td>$<%= number_with_delimiter(@building.streeteasy_2br.first, :delimiter => ',') %></td>
+			<td><%= number_with_delimiter(@building.streeteasy_2br.second, :delimiter => ',') %> sqft</td>
+			<td><%= link_to @building.streeteasy_2br.third, @building.streeteasy_2br.fourth %></td>
+			</table>
 		</div>
-<% else %>
-		</table>      
-		<h3><center><br>Remember: Be Thorough!
-		<br>No complaints does not guarantee<br> this is a good building.</center></h3>	
-<% end %>
+		</div>
+
 </div>
 <div class="row">
-<div class="span16"><center><h2>Nearby Businesses</h2><h3>provided by Foursquare</h3></center>
-<center><p>Coming Soon!</p></center>
+<div class="span16"><center><h2>Nearby Businesses</h2><h3>recommended by Foursquare</h3></center>
+	<table>
+    <tr><td><strong><%= @building.foursquare_explore[0]['venue']['name']  %></strong><br><%= @building.foursquare_explore[0]['venue']['categories'][0]['name']  %></td>
+        </tr>
+		<tr><td><strong><%= @building.foursquare_explore[1]['venue']['name']  %></strong><br><%= @building.foursquare_explore[1]['venue']['categories'][0]['name']   %></td>
+	        </tr>
+		    <tr><td><strong><%= @building.foursquare_explore[2]['venue']['name']  %></strong><br><%= @building.foursquare_explore[2]['venue']['categories'][0]['name']  %></td>
+		        </tr>
+				<tr><td><strong><%= @building.foursquare_explore[3]['venue']['name']  %></strong><br><%= @building.foursquare_explore[3]['venue']['categories'][0]['name']   %></td>
+			        </tr>
+	</table>
 </div>
 </div>
 

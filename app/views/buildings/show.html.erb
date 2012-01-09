@@ -25,38 +25,39 @@
 <% if @incidents_open.count == 1 %> Open Complaint</h2>
 <% else %> Open Complaints </h2>
 <% end %>
-    <table class="bordered-table" summary="building incidents" id="incidents_open">
-		  <tr>
-		    <th>Complaint About</th>
-		    <th>Reported</th>
-		    <th>Time to Close</th>
-		  </tr>
 		<div id="incidents_open">
-<% unless @incidents_open.empty? %>      
+<% unless @incidents_open.empty? %>  
+<table summary="building incidents" id="incidents_open">
+    <thead>
+	  <th>Complaint About</th>
+	  <th>Reported</th>
+	  <th>Time to Close</th>
+	</thead>
 <%= render @incidents_open %>
 	  </table>
 	<% if @incidents_open.next_page %>
 	  <center><%= link_to "More", params.merge(page: @incidents_open.next_page) %></center>
 	<% end %>
 <% else %>
-      </table>      
+<br>
 <h4><center>Remember: Be Thorough!
-	<br>No complaints does not guarantee this is a good building.</center></h4>	
+	<br>No complaints does not guarantee <br>this is a good building.</center></h4>	
 <% end %>
 </div>
-
+</div>
 <div class="span8">
     <h2><%= @building.incidents.isclosed.count %>
 	<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
 	<% else %> Closed Complaints </h2><% end %>
-      <table class="bordered-table" summary="building incidents" id="incidents_closed">
-	  <thead>		
+      
+<div id="incidents_closed">
+<% unless @incidents_closed.empty? %>
+<table summary="building incidents" id="incidents_closed">
+	<thead>
 	  <th>Complaint About</th>
 	  <th>Reported</th>
 	  <th>Time to Close</th>
-      </thead>
-<div id="incidents_closed">
-<% unless @incidents_closed.empty? %>      
+	</thead>      
       <%= render @incidents_closed %>
       </table>
 	<% if @incidents_closed.next_page %>
@@ -71,19 +72,47 @@
   </div>
 </div>
 <div class="row">
+	<br><br></div>
+<div class="row">	
 <div class="span8">
-	<center><h2>Neighborhood Rental Info</h2><h3> provided by Streeteasy<h3></center>
-		<table class="bordered-table">
-			<th>Average Rental Price</th>
-			<th>Average Square Feet</th>
-			<th>Current Listings</th>
-			</tr>
-	<td>$<%= @building.streeteasy.first %></td>
-	<td><%= @building.streeteasy.second %> sqft</td>
-	<td><%= @building.streeteasy.third %></td>
-		</table>
+  <h2>Neighborhood Rental Info</h2><h3> provided by Streeteasy<h3>
+    <table>
+	<th>Bedrooms</th>
+	<th>Average Rental Price</th>
+	<th>Average Square Feet</th>
+	<th>Current Listings</th>		
+	</tr>		
+	<td><p>Studio</p></td>		
+	<td>$<%= number_with_delimiter(@building.streeteasy_0br.first, :delimiter => ',') %></td>
+	<td><%= number_with_delimiter(@building.streeteasy_0br.second, :delimiter => ',') %> sqft</td>
+	<td><%= link_to @building.streeteasy_0br.third, @building.streeteasy_0br.fourth %></td>
+	</tr>		
+	<td><p>1 BR</p></td>		
+	<td>$<%= number_with_delimiter(@building.streeteasy_1br.first, :delimiter => ',') %></td>
+	<td><%= number_with_delimiter(@building.streeteasy_1br.second, :delimiter => ',') %> sqft</td>
+	<td><%= link_to @building.streeteasy_1br.third, @building.streeteasy_1br.fourth %></td>
+	</tr>
+	<td><p>2 BR</p></td>		
+	<td>$<%= number_with_delimiter(@building.streeteasy_2br.first, :delimiter => ',') %></td>
+	<td><%= number_with_delimiter(@building.streeteasy_2br.second, :delimiter => ',') %> sqft</td>
+	<td><%= link_to @building.streeteasy_2br.third, @building.streeteasy_2br.fourth %></td>
+	</table>
 </div>
-<div class="span8"><center><h2>Nearby Businesses</h2><h3>provided by Foursquare</h3></center>
-<center><p>Coming Soon!</p></center>
+
+<div class="span8">
+	
+  <h2>Nearby Businesses</h2><h3>provided by Foursquare</h3>
+    <table>
+    <tr><td><h4><%= @building.foursquare_explore[0]['venue']['name']  %></h4><%= @building.foursquare_explore[0]['venue']['categories'][0]['name']  %></td>
+        </tr>
+		<tr><td><h4><%= @building.foursquare_explore[1]['venue']['name']  %></h4><%= @building.foursquare_explore[1]['venue']['categories'][0]['name']   %></td>
+	        </tr>
+		    <tr><td><h4><%= @building.foursquare_explore[2]['venue']['name']  %></h4><%= @building.foursquare_explore[2]['venue']['categories'][0]['name']  %></td>
+		        </tr>
+				<tr><td><h4><%= @building.foursquare_explore[3]['venue']['name']  %></h4><%= @building.foursquare_explore[3]['venue']['categories'][0]['name']   %></td>
+			        </tr>
+	</table>
+
+	
 </div>
 </div>

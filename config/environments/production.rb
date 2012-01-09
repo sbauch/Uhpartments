@@ -6,7 +6,11 @@ Badnycm::Application.configure do
 
   # # Google Analytics
    GA.tracker = "UA-27951205-1"
-
+  
+  ## httparty allow pipe in URI
+  URI::DEFAULT_PARSER = 
+     URI::Parser.new(:UNRESERVED => URI::REGEXP::PATTERN::UNRESERVED + '|')
+  
   # Code is not reloaded between requests
   config.cache_classes = true
 

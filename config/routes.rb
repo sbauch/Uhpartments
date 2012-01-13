@@ -3,6 +3,8 @@ Badnycm::Application.routes.draw do
   match '/about',   :to => 'pages#about'
   match '/brokers', :to => 'pages#brokers'
   match '/how', :to => 'pages#how'
+  get :twilio, :controller => :pages
+  post :twilio, :controller => :pages
   resources :pages
   resources :incidents
   resources :buildings

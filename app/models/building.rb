@@ -21,21 +21,22 @@ def foursquare_explore
     recommended = groups[0]
    items = recommended['items']
 end
-# def score
-#   if self.incidents_count >= 100
-#     @score = "F"
-#   elsif self.incidents_count < 100 and self.incidents_count >= 75
-#     @score = "D"  
-#   elsif self.incidents_count < 75 and self.incidents_count >= 50
-#     @score = "C"
-#   elsif self.incidents_count < 50 and self.incidents_count >= 25
-#     @score = "B"
-#   elsif self.incidents_count < 25 and self.incidents_count >= 5
-#     @score = "A"
-#   elsif self.incidents_count < 5
-#     @score = "A+"
-#   end 
-# end
+
+def score
+  if self.incidents_count >= 75
+    @score = "F"
+  elsif self.incidents_count < 75 and self.incidents_count >= 50
+    @score = "D"  
+  elsif self.incidents_count < 50 and self.incidents_count >= 25
+    @score = "C"
+  elsif self.incidents_count < 25 and self.incidents_count >= 5
+    @score = "B"
+  elsif self.incidents_count < 5 and self.incidents_count >= 0
+    @score = "A"
+  elsif self.incidents_count = 0
+    @score = "A+"
+  end 
+end
 
 def geosearch
   nearest = Building.where("ST_Distance(latlon, "+" '#{latlon}') < 100").map{ |b| b.address } 

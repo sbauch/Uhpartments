@@ -15,32 +15,33 @@
       </div>
     </div>
 <body>
+
   <div class="container">		
 	<div class="row">	
 			      <div class="span10">
 				<br><br><br>
 					<h1><center>Uhpartments for Renters</center></h1> 
-					<h2><center>Building Reports On The Go</center></h2><br>
+					<h2><center>Building Maintenance Reports <br>On The Go</center></h2><br>
 					<h3><center>Get a deeper look at a building when you walk through.<br>
 						        Visit uhpartments.com on your smartphone.</center></h3>
 				<br><br>
-					<form><center>
+				<form><center>
 					  <input class="btn primary large" type="button" onclick="getLocation();" value="See Buildings Near Me Now"/>
 					<p><br>We're only in NYC</p>
-					<p><%= link_to "(Example Report for non New Yorkers)", "/buildings/2354" %></p>
-						  </center>
 					</form>
-					<br>
-					<h3><center><%= link_to "Uhpartments for Brokers", brokers_path %></li> || <%= link_to "How Uhpartments Works", how_path %>
-				</h3>
-					
-					</center>
+				<br>
+				<h3><center>Take uhpartments with you!</h3><center><h7>Enter your mobile number</h7><br><br>
+					<form align="center" action="twilio">
+					<input type="tel" name="phone_number"/>
+					<input type="submit" class="btn primary" value="Text me a link!">
+					</form><h5><%= flash[:alert] %></h5></center>
 				  </div>
 				  <div class="span6">
 							<img src="/uhpartments.png" align="right"/>
 				  </div>
 		</div>
 	</div>	
+	<script src="//maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script>
 function showLocation(position) {
   var latitude = position.coords.latitude;
@@ -59,7 +60,7 @@ function getLocation(){
 
    if(navigator.geolocation){
       // timeout at 60000 milliseconds (60 seconds)
-      var options = {timeout:60000};
+      var options = {timeout:60000, enableHighAccuracy: true};
       navigator.geolocation.getCurrentPosition(showLocation, 
                                                errorHandler,
                                                options);
@@ -67,4 +68,6 @@ function getLocation(){
       alert("Sorry, browser does not support geolocation!");
    }
 }
+
+
 </script>							

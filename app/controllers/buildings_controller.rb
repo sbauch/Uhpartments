@@ -16,8 +16,8 @@ class BuildingsController < ApplicationController
   # GET /buildings/1.json
   def show
     @building = Building.find(params[:id])
-    @incidents_closed = @building.incidents.isclosed.page(params[:page]).per_page(10)
-    @incidents_open = @building.incidents.isopen.page(params[:page]).per_page(10)
+    @incidents_closed = @building.incidents.isclosed.page(params[:page]).per_page(5)
+    @incidents_open = @building.incidents.isopen.page(params[:page]).per_page(5)
     @venues = @building.foursquare2 
     respond_to do |format|
       format.html # show.html.erb

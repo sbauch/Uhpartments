@@ -13,25 +13,25 @@
  * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 html, body {
 /* IE10 */ 
-background-image: -ms-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
+/*background-image: -ms-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
 
 /* Mozilla Firefox */ 
-background-image: -moz-linear-gradient(top, #FFFFFF  0%, #E3E3EF 100%);
+/*background-image: -moz-linear-gradient(top, #FFFFFF  0%, #E3E3EF 100%);*/
 
 /* Opera */ 
-background-image: -o-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
-
+/*background-image: -o-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
+*/
 /* Webkit (Safari/Chrome 10) */ 
-background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #E3E3EF));
-
+/*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #E3E3EF));
+*/
 /* Webkit (Chrome 11+) */ 
-background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
-
+/*background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
+*/
 /* Proposed W3C Markup */ 
-background-image: linear-gradient(top, #FFFFFF 0%, #E3E3EF 100%);
-  background-attachment: fixed;
+background: url('/assets/concrete_wall_3.png') repeat ;
   margin: 0;
   padding-top: 40px;
+
   
     }
 h1,
@@ -440,6 +440,7 @@ h1 {
   font-size: 48px;
   line-height: 48px;
   color: #4B5470;
+text-shadow: 0 2px 4px #fff;
 }
 h1 small {
   font-size: 18px;
@@ -448,6 +449,7 @@ h2 {
   font-size: 30px;
   line-height: 36px;
   color: #4B5470;
+text-shadow: 0 2px 4px #fff;
 }
 h2 small {
   font-size: 14px;
@@ -472,11 +474,17 @@ h4 small {
   font-size: 12px;
 }
 h5 {
-  font-size: 14px;
+  	font-size: 12px;
+  color: red;
+  line-height: 12px;
+
+  text-transform: uppercase;
 }
 h6 {
-  font-size: 13px;
+  font-size: 12px;
   color: #bfbfbf;
+  line-height: 12px;
+
   text-transform: uppercase;
 }
 ul, ol {

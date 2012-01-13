@@ -1,25 +1,125 @@
-<div class="topbar">
-      <div class="fill">
-        <div class="container">
-          <div class="brand"><%= link_to "uh...partments", root_path %>
-	</div>
-          <ul class="nav">
-            <li><%= link_to "About", about_path %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<head>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <style>#map{border:1px solid #000; width:250px; height:180px;padding-left: 20px}</style>
+    <style>#panorama{border:1px solid #000; width:500px; height:340px; -moz-box-shadow: 5px 5px 5px #4B5470;
+	-webkit-box-shadow: 5px 5px 5px #4B5470;
+	box-shadow: 5px 5px 5px #4B5470}</style>
+
+    <script>
+function initialize() {
+	var lat = <%= @building.lat %>
+	var lon = <%= @building.lon %>
+	
+    var latlng = new google.maps.LatLng(lat, lon);
+	   var locations = [
+	      ['You', lat, lon, 1],
+	     ];
+    var options = { 
+     center: latlng,
+     disableDefaultUI: true,
+     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    };
+
+
+
+    var pOptions = {
+      position: latlng,
+      pov: {
+        heading: 270,
+        pitch: 0,
+        zoom: 0
+      }
+    };
+
+    var panorama = new google.maps.StreetViewPanorama(
+                         document.getElementById("panorama"), pOptions
+                       );
+
+    map.setStreetView(panorama);
+
+   }
+  
+function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+        window.onload = func;
+    } else {
+        window.onload = function() {
+            if (oldonload) {
+                oldonload();
+            }
+            func();
+        }
+    }
+}
+addLoadEvent(function() {
+     initialize();
+})
+    </script>
+  </head>
+  <body>
 
 <div class="container">
   <div class="content">
-    <div class="page-header">
-	  <h2><%= @building.address %>, 
-	<% if @building.city != @building.nabename.upcase %>
-		<%= @building.nabename.upcase %>, <%= @building.city %> </h2>	</div>
-		<% else %>
-		<%= @building.city %> </h2>	</div>
-		<% end %>
+    
 <div class="row">
+	<div class="span7">
+	<h2><%= @building.address %> <br>
+	<% if @building.city != @building.nabename.upcase %>
+		<%= @building.nabename.upcase %><br> <%= @building.city %> </h2>
+		<% else %>
+		<%= @building.city %><br>QUEENS </h2>
+		<% end %>
+		<br>
+		<div id="map"></div> 
+		<script>
+		 var lat = <%= @building.lat %>
+		     var lon = <%= @building.lon %>
+		    var latlng = new google.maps.LatLng(lat, lon);
+		    var locations = [
+		      ['You', lat, lon, 1],
+		     ];
+
+		    var map = new google.maps.Map(document.getElementById('map'), {
+		      zoom: 16,
+		      minZoom: 16,
+		      maxZoom: 16,
+		      center: new google.maps.LatLng(lat, lon),
+		      disableDefaultUI: true,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    });
+
+		    var marker, i;
+
+		    for (i = 0; i < locations.length; i++) {  
+		      marker = new google.maps.Marker({
+		        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+		        map: map
+		      });
+
+		      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+		        return function() {
+		          infowindow.setContent(locations[i][0]);
+		          infowindow.open(map, marker);
+		        }
+		      })(marker, i));
+		    }
+		  </script>
+		<br>
+		 <h2>GRADE: </h2>
+		<% if @building.score == "A" %><h2 style="text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% elsif @building.score == "B" %><h2 style="color:#283f85;text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% elsif @building.score == "C" %><h2 style="color:#F4CC37;text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% elsif @building.score == "D" %><h2 style="color:#F46F51;text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% elsif @building.score == "F" %><h2 style="color:#B4372F;text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% end %>
+		</div>
+		<br>
+		<br>
+	   <right><div id="panorama" class="span9"></right></div>
+
+	</div>
+		<div class="row"><br><br>
   <div class="span8">
     <h2><%= @incidents_open.count %> 
 <% if @incidents_open.count == 1 %> Open Complaint</h2>
@@ -59,7 +159,7 @@
 	  <th>Time to Close</th>
 	</thead>      
       <%= render @incidents_closed %>
-      </table>
+</table>
 	<% if @incidents_closed.next_page %>
 	  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page) %></center>
 	<% end %>
@@ -71,8 +171,7 @@
 	</div>
   </div>
 </div>
-<div class="row">
-	<br><br></div>
+<div class="row"><br><br></div>
 <div class="row">	
 <div class="span8">
   <h2>Neighborhood Rental Info</h2><h3> provided by Streeteasy<h3>
@@ -101,18 +200,24 @@
 
 <div class="span8">
 	
-  <h2>Nearby Businesses</h2><h3>provided by Foursquare</h3>
+  <h2>Nearby Businesses</h2><h3>recommended by Foursquare</h3>
     <table>
-    <tr><td><h4><%= @building.foursquare_explore[0]['venue']['name']  %></h4><%= @building.foursquare_explore[0]['venue']['categories'][0]['name']  %></td>
-        </tr>
-		<tr><td><h4><%= @building.foursquare_explore[1]['venue']['name']  %></h4><%= @building.foursquare_explore[1]['venue']['categories'][0]['name']   %></td>
-	        </tr>
-		    <tr><td><h4><%= @building.foursquare_explore[2]['venue']['name']  %></h4><%= @building.foursquare_explore[2]['venue']['categories'][0]['name']  %></td>
-		        </tr>
-				<tr><td><h4><%= @building.foursquare_explore[3]['venue']['name']  %></h4><%= @building.foursquare_explore[3]['venue']['categories'][0]['name']   %></td>
-			        </tr>
+    <tr><td><h4><%= @building.foursquare_explore[0]['venue']['name']  %>
+	        </h4><%= @building.foursquare_explore[0]['venue']['categories'][0]['name']  %>
+            <h6><%= @building.foursquare_explore[0]['reasons']['items'][0]['message'] %></h6></td>
+    </tr>
+	<tr><td><h4><%= @building.foursquare_explore[1]['venue']['name']  %>
+		    </h4><%= @building.foursquare_explore[1]['venue']['categories'][0]['name']   %>
+		    <h6><%= @building.foursquare_explore[1]['reasons']['items'][0]['message'] %></h6></td>
+	</tr>
+	<tr><td><h4><%= @building.foursquare_explore[2]['venue']['name']  %>
+		    </h4><%= @building.foursquare_explore[2]['venue']['categories'][0]['name']  %>
+		    <h6><%= @building.foursquare_explore[2]['reasons']['items'][0]['message'] %></h6></td>
+	</tr>
+	<tr><td><h4><%= @building.foursquare_explore[3]['venue']['name']  %>
+		    </h4><%= @building.foursquare_explore[3]['venue']['categories'][0]['name']   %>
+		    <h6><%= @building.foursquare_explore[3]['reasons']['items'][0]['message'] %></h6></td>
+	</tr>
 	</table>
-
-	
 </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213222300) do
+ActiveRecord::Schema.define(:version => 20120116233930) do
 
   create_table "buildings", :force => true do |t|
     t.string   "address"
@@ -21,12 +21,23 @@ ActiveRecord::Schema.define(:version => 20111213222300) do
     t.float    "lon"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "incidents_count",                                                             :default => 0
-    t.spatial  "latlon",          :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.integer  "incidents_count",              :default => 0
+    t.integer  "latlon",          :limit => 0
+    t.string   "type"
   end
 
   add_index "buildings", ["address"], :name => "address"
   add_index "buildings", ["id"], :name => "id", :unique => true
+
+  create_table "geometry_columns", :id => false, :force => true do |t|
+    t.string  "f_table_catalog",   :limit => 256, :null => false
+    t.string  "f_table_schema",    :limit => 256, :null => false
+    t.string  "f_table_name",      :limit => 256, :null => false
+    t.string  "f_geometry_column", :limit => 256, :null => false
+    t.integer "coord_dimension",                  :null => false
+    t.integer "srid",                             :null => false
+    t.string  "type",              :limit => 30,  :null => false
+  end
 
   create_table "incidents", :force => true do |t|
     t.string   "agency"
@@ -39,8 +50,37 @@ ActiveRecord::Schema.define(:version => 20111213222300) do
     t.string   "building_address"
   end
 
+  create_table "laundromats", :force => true do |t|
+    t.string   "name"
+    t.float    "lat"
+    t.float    "lon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spatial_ref_sys", :id => false, :force => true do |t|
+    t.integer "srid",                      :null => false
+    t.string  "auth_name", :limit => 256
+    t.integer "auth_srid"
+    t.string  "srtext",    :limit => 2048
+    t.string  "proj4text", :limit => 2048
+  end
+
+  create_table "subways", :force => true do |t|
+    t.string   "name"
+    t.float    "lat"
+    t.float    "lon"
+    t.string   "train1"
+    t.string   "train2"
+    t.string   "train3"
+    t.string   "train4"
+    t.string   "train5"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
-    t.spatial  "location",   :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.integer  "location",   :limit => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

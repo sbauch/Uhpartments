@@ -1,4 +1,8 @@
 Badnycm::Application.routes.draw do
+  resources :subways
+
+  resources :laundromats
+
   root :to => 'pages#home'
   match '/about',   :to => 'pages#about'
   match '/brokers', :to => 'pages#brokers'

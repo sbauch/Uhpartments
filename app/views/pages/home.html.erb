@@ -19,25 +19,25 @@
   <div class="container">		
 	<div class="row">	
 			      <div class="span10">
-				<br><br><br>
 					<h1><center>Uhpartments for Renters</center></h1> 
 					<h2><center>Building Maintenance Reports <br>On The Go</center></h2><br>
 					<h3><center>Get a deeper look at a building when you walk through.<br>
 						        Visit uhpartments.com on your smartphone.</center></h3>
 				<br><br>
 				<form><center>
-					  <input class="btn primary large" type="button" onclick="getLocation();" value="See Buildings Near Me Now"/>
+					  <input class="btn primary large" type="button" onclick="getLocation();" value="See Buildings Near Me Now"/></form>
 					<p><br>We're only in NYC</p>
-					</form>
 				<br>
 				<h3><center>Take uhpartments with you!</h3><center><h7>Enter your mobile number</h7><br><br>
 					<form align="center" action="twilio">
 					<input type="tel" name="phone_number"/>
 					<input type="submit" class="btn primary" value="Text me a link!">
-					</form><h5><%= flash[:alert] %></h5></center>
+					</form><h5><%= flash[:alert] %></h5>
+					</center>
 				  </div>
 				  <div class="span6">
 							<img src="/uhpartments.png" align="right"/>
+							
 				  </div>
 		</div>
 	</div>	

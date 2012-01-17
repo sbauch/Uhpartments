@@ -18,8 +18,9 @@ def foursquare_explore
   fsq_response = HTTParty.get("https://api.foursquare.com/v2/venues/explore?ll="+ latlon +"&radius=500&limit=10&client_id=TPUY2K3PFHIGOLVB2UX1ZQZ2ONONITLV1LKHHZWGVPUMPYJ1&client_secret=TM2AQHNZ1B0LVEAFBLUCVAURLE33CRSYJRCV1WIJYN0EV0WW&v=20111109")
    response = fsq_response['response']
    groups = response['groups']
-    recommended = groups[0]
+   recommended = groups[0]
    items = recommended['items']
+ 
 end
 
 def score
@@ -77,3 +78,30 @@ def streeteasy_2br
   stats = Array.new([@price, @sqft, @listings, @listings_url])
 end
    
+def laundromats
+  laundromats = Laundromat.near([self.lat, self.lon], 1.0 )
+end
+def distance
+ distance = distance_to(self.laundromats[0], :units => :mi)
+ distance_feet = distance * 5280
+ rounded = distance_feet.to_i
+end
+
+def subways
+  subways = Subway.near([self.lat, self.lon], 1.0 )
+end
+def subway_distance1
+ distance = distance_to(self.subways[0], :units => :mi)
+ distance_feet = distance * 5280
+ rounded = distance_feet.to_i
+end
+def subway_distance2
+ distance = distance_to(self.subways[1], :units => :mi)
+ distance_feet = distance * 5280
+ rounded = distance_feet.to_i
+end
+def subway_distance3
+ distance = distance_to(self.subways[2], :units => :mi)
+ distance_feet = distance * 5280
+ rounded = distance_feet.to_i
+end

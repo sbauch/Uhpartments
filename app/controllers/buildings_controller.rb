@@ -18,9 +18,10 @@ class BuildingsController < ApplicationController
     @building = Building.find(params[:id])
     @incidents_closed = @building.incidents.isclosed.page(params[:page]).per_page(5)
     @incidents_open = @building.incidents.isopen.page(params[:page]).per_page(5)
-    @venues = @building.foursquare2 
+    
     respond_to do |format|
       format.html # show.html.erb
+      format.js
       format.json { render json: @building }
     end
   end

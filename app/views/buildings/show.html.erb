@@ -133,48 +133,23 @@ addLoadEvent(function() {
 	  <th>Reported</th>
 	  <th>Time to Close</th>
 	</thead>
-<%= render @incidents_open %>
+	<%= render :partial => @incidents_open %>
+	<script>
+	$(document).ready(function() {
+	    $('.pagination a').attr('data-remote', 'true');
+	});</script>
 	  </table>
 	<% if @incidents_open.next_page %>
-	  <center><%= link_to "More", params.merge(page: @incidents_open.next_page) %></center>
+	  <center><%= link_to "More", params.merge(page: @incidents_open.next_page, :remote => :true) %><br><br><br></center>
 	<% end %>
 <% else %>
-<br>
+<br><br>
 <h4><center>Remember: Be Thorough!
-	<br>No complaints does not guarantee <br>this is a good building.</center></h4>	
+	<br>No complaints does not guarantee <br>this is a good building.<br><br><br><br></center></h4>	
 <% end %>
 </div>
-</div>
-<div class="span8">
-    <h2><%= @building.incidents.isclosed.count %>
-	<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
-	<% else %> Closed Complaints </h2><% end %>
-      
-<div id="incidents_closed">
-<% unless @incidents_closed.empty? %>
-<table summary="building incidents" id="incidents_closed">
-	<thead>
-	  <th>Complaint About</th>
-	  <th>Reported</th>
-	  <th>Time to Close</th>
-	</thead>      
-      <%= render @incidents_closed %>
-</table>
-	<% if @incidents_closed.next_page %>
-	  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page) %></center>
-	<% end %>
-<% else %>
-	</table>      
-	<h4><center>Remember: Be Thorough!
-	  <br>No complaints does not guarantee this is a good building.</center></h4>	
-<% end %>
-	</div>
-  </div>
-</div>
-<div class="row"><br><br></div>
-<div class="row">	
-<div class="span8">
-  <h2>Neighborhood Rental Info</h2><h3> provided by Streeteasy<h3>
+<div id="streeteasy">
+  <h2>Neighborhood Rental Info</h2><h3> provided by <a href="http://www.streeteasy.com" target="_blank"><img src="/logo_255.png" height="35px" style="padding-left:10px;"/></a><h3>
     <table>
 	<th>Bedrooms</th>
 	<th>Average Rental Price</th>
@@ -196,28 +171,101 @@ addLoadEvent(function() {
 	<td><%= number_with_delimiter(@building.streeteasy_2br.second, :delimiter => ',') %> sqft</td>
 	<td><%= link_to @building.streeteasy_2br.third, @building.streeteasy_2br.fourth %></td>
 	</table>
+	<div id="laundromats">
+	<h2>Closest Laundromat</h2>
+	<h3>registered with NYC</h3>
+	<table>
+	<tr><td><%= @building.laundromats[0].name %><h6>This name appears on the city license</h6></td>
+		<td><%= number_with_delimiter(@building.distance, :delimiter => ',') %> feet</td></tr>
+	</table>
+	</div>
 </div>
 
+</div>
 <div class="span8">
+    <h2><%= @building.incidents.isclosed.count %>
+	<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
+	<% else %> Closed Complaints </h2><% end %>
+      
+<div>
+<% unless @incidents_closed.empty? %>
+<div id="incidents_closed">
+<table summary="building incidents">
+	<thead>
+	  <th>Complaint About</th>
+	  <th>Reported</th>
+	  <th>Time to Close</th>
+	</thead>      
+<%= render :partial => @incidents_closed %>
+	<script>
+	$(document).ready(function() {
+	    $('.pagination a').attr('data-remote', 'true');
+	});</script></div>
+</table>
+
+	<% if @incidents_closed.next_page %>
+	  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page, :remote => :true) %><br><br><br></center>
+
+	<% end %>
+</div>	
+<% else %>
+	</table>      
+	<h4><center>Remember: Be Thorough!
+	  <br>No complaints does not guarantee this is a good building.<br><br><br><br></center></h4>	
+<% end %>
+<div id="foursquare">
 	
-  <h2>Nearby Businesses</h2><h3>recommended by Foursquare</h3>
+  <h2>Nearby Businesses</h2><h3>recommended by<a href="http://www.foursquare.com" target="_blank"><img src="/foursquare-logo.png" height="25px" style="padding-left:10px;"></a></h3>
     <table>
-    <tr><td><h4><%= @building.foursquare_explore[0]['venue']['name']  %>
+    <tr><td><h4><%= link_to @building.foursquare_explore[0]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[0]['venue']['id']}"  %>
 	        </h4><%= @building.foursquare_explore[0]['venue']['categories'][0]['name']  %>
             <h6><%= @building.foursquare_explore[0]['reasons']['items'][0]['message'] %></h6></td>
+			<td><%= image_tag("#{@building.foursquare_explore[0]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
     </tr>
-	<tr><td><h4><%= @building.foursquare_explore[1]['venue']['name']  %>
+	<tr><td><h4><%= link_to @building.foursquare_explore[1]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[1]['venue']['id']}"   %>
 		    </h4><%= @building.foursquare_explore[1]['venue']['categories'][0]['name']   %>
 		    <h6><%= @building.foursquare_explore[1]['reasons']['items'][0]['message'] %></h6></td>
+		<td><%= image_tag("#{@building.foursquare_explore[1]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
 	</tr>
-	<tr><td><h4><%= @building.foursquare_explore[2]['venue']['name']  %>
+	<tr><td><h4><%= link_to @building.foursquare_explore[2]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[2]['venue']['id']}"  %>
 		    </h4><%= @building.foursquare_explore[2]['venue']['categories'][0]['name']  %>
 		    <h6><%= @building.foursquare_explore[2]['reasons']['items'][0]['message'] %></h6></td>
+		<td><%= image_tag("#{@building.foursquare_explore[2]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
 	</tr>
-	<tr><td><h4><%= @building.foursquare_explore[3]['venue']['name']  %>
+	<tr><td><h4><%= link_to @building.foursquare_explore[3]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[3]['venue']['id']}"  %>
 		    </h4><%= @building.foursquare_explore[3]['venue']['categories'][0]['name']   %>
 		    <h6><%= @building.foursquare_explore[3]['reasons']['items'][0]['message'] %></h6></td>
+		<td><%= image_tag("#{@building.foursquare_explore[3]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
 	</tr>
 	</table>
-</div>
+</div> 
+<div id="subways">
+<h2>Subway Stations</h2>
+<table>
+	<tr><th>Station</th>
+		<th>Trains</th></tr>
+<tr><td><h4><%= @building.subways[0].name %></h4><%= number_with_delimiter(@building.subway_distance1, :delimiter => ',') %> feet</td>
+	<td><%= image_tag("/t#{@building.subways[0].train1}cur.gif") %>  
+	<% unless @building.subways[0].train2.nil? %><%= image_tag("/t#{@building.subways[0].train2}cur.gif") %> <% end %> 
+	<% unless @building.subways[0].train3.nil? %><%= image_tag("/t#{@building.subways[0].train3}cur.gif") %> <% end %>
+	<% unless @building.subways[0].train4.nil? %><%= image_tag("/t#{@building.subways[0].train4}cur.gif") %> <% end %> 
+	<% unless @building.subways[0].train5.nil? %><%= image_tag("/t#{@building.subways[0].train5}cur.gif") %> <% end %></td></tr>
+<% unless @building.subways[1].train1 == @building.subways[0].train1 %>
+<tr><td><h4><%= @building.subways[1].name %></h4><%= number_with_delimiter(@building.subway_distance2, :delimiter => ',') %> feet</td>
+	<td><%= image_tag("/t#{@building.subways[1].train1}cur.gif") %>  
+	<% unless @building.subways[1].train2.nil? %><%= image_tag("/t#{@building.subways[1].train2}cur.gif") %> <% end %> 
+    <% unless @building.subways[1].train3.nil? %><%= image_tag("/t#{@building.subways[1].train3}cur.gif") %> <% end %>
+	<% unless @building.subways[1].train4.nil? %><%= image_tag("/t#{@building.subways[1].train4}cur.gif") %> <% end %> 
+	<% unless @building.subways[1].train5.nil? %><%= image_tag("/t#{@building.subways[1].train5}cur.gif") %><% end %></td></tr>
+<% end %>
+<% unless @building.subways[2].train1 == @building.subways[0].train1 || @building.subways[2].train1 == @building.subways[1].train1  %>
+<tr><td><h4><%= @building.subways[2].name %></h4><%= number_with_delimiter(@building.subway_distance3, :delimiter => ',') %> feet</td>
+	<td><%= image_tag("/t#{@building.subways[2].train1}cur.gif") %>  
+	<% unless @building.subways[2].train2.nil? %><%= image_tag("/t#{@building.subways[2].train2}cur.gif") %> <% end %> 
+	<% unless @building.subways[2].train3.nil? %><%= image_tag("/t#{@building.subways[2].train3}cur.gif") %> <% end %>
+	<% unless @building.subways[2].train4.nil? %><%= image_tag("/t#{@building.subways[2].train4}cur.gif") %> <% end %> 
+	<% unless @building.subways[2].train5.nil? %><%= image_tag("/t#{@building.subways[2].train5}cur.gif") %><% end %></td></tr>
+<% end %>
+</table>
+</div> 
 </div>

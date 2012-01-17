@@ -245,26 +245,26 @@ addLoadEvent(function() {
 	<tr><th>Station</th>
 		<th>Trains</th></tr>
 <tr><td><h4><%= @building.subways[0].name %></h4><%= number_with_delimiter(@building.subway_distance1, :delimiter => ',') %> feet</td>
-	<td><%= image_tag("/t#{@building.subways[0].train1}cur.gif") %>  
-	<% unless @building.subways[0].train2.nil? %><%= image_tag("/t#{@building.subways[0].train2}cur.gif") %> <% end %> 
-	<% unless @building.subways[0].train3.nil? %><%= image_tag("/t#{@building.subways[0].train3}cur.gif") %> <% end %>
-	<% unless @building.subways[0].train4.nil? %><%= image_tag("/t#{@building.subways[0].train4}cur.gif") %> <% end %> 
-	<% unless @building.subways[0].train5.nil? %><%= image_tag("/t#{@building.subways[0].train5}cur.gif") %> <% end %></td></tr>
+	<td><%= image_tag("/t#{@building.subways[0].train1.downcase}cur.gif") %>  
+	<% unless @building.subways[0].train2.nil? %><%= image_tag("/t#{@building.subways[0].train2.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[0].train3.nil? %><%= image_tag("/t#{@building.subways[0].train3.downcase}cur.gif") %> <% end %>
+	<% unless @building.subways[0].train4.nil? %><%= image_tag("/t#{@building.subways[0].train4.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[0].train5.nil? %><%= image_tag("/t#{@building.subways[0].train5.downcase}cur.gif") %> <% end %></td></tr>
 <% unless @building.subways[1].train1 == @building.subways[0].train1 %>
 <tr><td><h4><%= @building.subways[1].name %></h4><%= number_with_delimiter(@building.subway_distance2, :delimiter => ',') %> feet</td>
-	<td><%= image_tag("/t#{@building.subways[1].train1}cur.gif") %>  
-	<% unless @building.subways[1].train2.nil? %><%= image_tag("/t#{@building.subways[1].train2}cur.gif") %> <% end %> 
-    <% unless @building.subways[1].train3.nil? %><%= image_tag("/t#{@building.subways[1].train3}cur.gif") %> <% end %>
-	<% unless @building.subways[1].train4.nil? %><%= image_tag("/t#{@building.subways[1].train4}cur.gif") %> <% end %> 
-	<% unless @building.subways[1].train5.nil? %><%= image_tag("/t#{@building.subways[1].train5}cur.gif") %><% end %></td></tr>
+	<td><%= image_tag("/t#{@building.subways[1].train1.downcase}cur.gif") %>  
+	<% unless @building.subways[1].train2.nil? %><%= image_tag("/t#{@building.subways[1].train2.downcase}cur.gif") %> <% end %> 
+    <% unless @building.subways[1].train3.nil? %><%= image_tag("/t#{@building.subways[1].train3.downcase}cur.gif") %> <% end %>
+	<% unless @building.subways[1].train4.nil? %><%= image_tag("/t#{@building.subways[1].train4.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[1].train5.nil? %><%= image_tag("/t#{@building.subways[1].train5.downcase}cur.gif") %><% end %></td></tr>
 <% end %>
 <% unless @building.subways[2].train1 == @building.subways[0].train1 || @building.subways[2].train1 == @building.subways[1].train1  %>
 <tr><td><h4><%= @building.subways[2].name %></h4><%= number_with_delimiter(@building.subway_distance3, :delimiter => ',') %> feet</td>
-	<td><%= image_tag("/t#{@building.subways[2].train1}cur.gif") %>  
-	<% unless @building.subways[2].train2.nil? %><%= image_tag("/t#{@building.subways[2].train2}cur.gif") %> <% end %> 
-	<% unless @building.subways[2].train3.nil? %><%= image_tag("/t#{@building.subways[2].train3}cur.gif") %> <% end %>
-	<% unless @building.subways[2].train4.nil? %><%= image_tag("/t#{@building.subways[2].train4}cur.gif") %> <% end %> 
-	<% unless @building.subways[2].train5.nil? %><%= image_tag("/t#{@building.subways[2].train5}cur.gif") %><% end %></td></tr>
+	<td><%= image_tag("/t#{@building.subways[2].train1.downcase}cur.gif") %>  
+	<% unless @building.subways[2].train2.nil? %><%= image_tag("/t#{@building.subways[2].train2.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[2].train3.nil? %><%= image_tag("/t#{@building.subways[2].train3.downcase}cur.gif") %> <% end %>
+	<% unless @building.subways[2].train4.nil? %><%= image_tag("/t#{@building.subways[2].train4.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[2].train5.nil? %><%= image_tag("/t#{@building.subways[2].train5.downcase}cur.gif") %><% end %></td></tr>
 <% end %>
 </table>
 </div> 

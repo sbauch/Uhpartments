@@ -1,0 +1,4 @@
+$('#incidents_closed').html('<table><thead><th>Complaint About</th><th>Reported</th><th>Time to Close</th></thead><%=escape_javascript render :partial => @incidents_closed %></table><% if @incidents_closed.next_page %><center><%= link_to "More", params.merge(page: @incidents_closed.next_page, :remote => :true) %><br><br><br></center><% end %>');
+$('.pagination a').attr('data-remote', 'true');
+$('#incidents_open').html('<table><thead><th>Complaint About</th><th>Reported</th><th>Time to Close</th></thead><%=escape_javascript render :partial => @incidents_open %></table><% if @incidents_closed.next_page %><center><%= link_to "More", params.merge(page: @incidents_open.next_page, :remote => :true) %><br><br><br></center><% end %>');
+$('.pagination a').attr('data-remote', 'true');

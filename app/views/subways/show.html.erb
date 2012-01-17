@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @subway.name %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @subway.lat %>
+</p>
+
+<p>
+  <b>Lon:</b>
+  <%= @subway.lon %>
+</p>
+
+<p>
+  <b>Train1:</b>
+  <%= @subway.train1 %>
+</p>
+
+<p>
+  <b>Train2:</b>
+  <%= @subway.train2 %>
+</p>
+
+<p>
+  <b>Train3:</b>
+  <%= @subway.train3 %>
+</p>
+
+<p>
+  <b>Train4:</b>
+  <%= @subway.train4 %>
+</p>
+
+<p>
+  <b>Train5:</b>
+  <%= @subway.train5 %>
+</p>
+
+
+<%= link_to 'Edit', edit_subway_path(@subway) %> |
+<%= link_to 'Back', subways_path %>

@@ -1,0 +1,49 @@
+<%= form_for(@subway) do |f| %>
+  <% if @subway.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subway.errors.count, "error") %> prohibited this subway from being saved:</h2>
+
+      <ul>
+      <% @subway.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :lat %><br />
+    <%= f.text_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.label :lon %><br />
+    <%= f.text_field :lon %>
+  </div>
+  <div class="field">
+    <%= f.label :train1 %><br />
+    <%= f.text_field :train1 %>
+  </div>
+  <div class="field">
+    <%= f.label :train2 %><br />
+    <%= f.text_field :train2 %>
+  </div>
+  <div class="field">
+    <%= f.label :train3 %><br />
+    <%= f.text_field :train3 %>
+  </div>
+  <div class="field">
+    <%= f.label :train4 %><br />
+    <%= f.text_field :train4 %>
+  </div>
+  <div class="field">
+    <%= f.label :train5 %><br />
+    <%= f.text_field :train5 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

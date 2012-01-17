@@ -1,0 +1,37 @@
+<h1>Listing subways</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Train1</th>
+    <th>Train2</th>
+    <th>Train3</th>
+    <th>Train4</th>
+    <th>Train5</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @subways.each do |subway| %>
+  <tr>
+    <td><%= subway.name %></td>
+    <td><%= subway.lat %></td>
+    <td><%= subway.lon %></td>
+    <td><%= subway.train1 %></td>
+    <td><%= subway.train2 %></td>
+    <td><%= subway.train3 %></td>
+    <td><%= subway.train4 %></td>
+    <td><%= subway.train5 %></td>
+    <td><%= link_to 'Show', subway %></td>
+    <td><%= link_to 'Edit', edit_subway_path(subway) %></td>
+    <td><%= link_to 'Destroy', subway, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Subway', new_subway_path %>

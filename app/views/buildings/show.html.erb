@@ -1,6 +1,7 @@
 <head>
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <style>#map{border:1px solid #000; width:250px; height:180px;padding-left: 20px}</style>
+    <style>#map{border:1px solid #000; width:250px; height:180px;padding-left: 20px;-webkit-box-shadow: 5px 5px 5px #4B5470;
+	box-shadow: 5px 5px 5px #4B5470}</style>
     <style>#panorama{border:1px solid #000; width:500px; height:340px; -moz-box-shadow: 5px 5px 5px #4B5470;
 	-webkit-box-shadow: 5px 5px 5px #4B5470;
 	box-shadow: 5px 5px 5px #4B5470}</style>
@@ -63,7 +64,7 @@ addLoadEvent(function() {
   <div class="content">
     
 <div class="row">
-	<div class="span7">
+	<div class="span5">
 	<h2><%= @building.address %> <br>
 	<% if @building.city != @building.nabename.upcase %>
 		<%= @building.nabename.upcase %><br> <%= @building.city %> </h2>
@@ -116,11 +117,11 @@ addLoadEvent(function() {
 		</div>
 		<br>
 		<br>
-	   <right><div id="panorama" class="span9"></right></div>
+	   <right><div id="panorama" class="span7"></right></div>
 
 	</div>
-		<div class="row"><br><br>
-  <div class="span8">
+<div class="row"><br><br>
+<div class="span6">
     <h2><%= @incidents_open.count %> 
 <% if @incidents_open.count == 1 %> Open Complaint</h2>
 <% else %> Open Complaints </h2>
@@ -148,7 +149,44 @@ addLoadEvent(function() {
 	<br>No complaints does not guarantee <br>this is a good building.<br><br><br><br></center></h4>	
 <% end %>
 </div>
-<div id="streeteasy">
+</div>
+<div class="span6">
+	 <h2><%= @building.incidents.isclosed.count %>
+		<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
+		<% else %> Closed Complaints </h2><% end %>
+
+	<div>
+	<% unless @incidents_closed.empty? %>
+	<div id="incidents_closed">
+	<table summary="building incidents">
+		<thead>
+		  <th>Complaint About</th>
+		  <th>Reported</th>
+		  <th>Time to Close</th>
+		</thead>      
+	<%= render :partial => @incidents_closed %>
+		<script>
+		$(document).ready(function() {
+		    $('.pagination a').attr('data-remote', 'true');
+		});</script></div>
+	</table>
+
+		<% if @incidents_closed.next_page %>
+		  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page, :remote => :true) %><br><br><br></center>
+
+		<% end %>
+	</div>	
+	<% else %>
+		</table>      
+		<h4><center>Remember: Be Thorough!
+		  <br>No complaints does not guarantee this is a good building.<br><br><br><br></center></h4>	
+	<% end %>
+	</div>
+	</div>
+	</div>
+<div class="row">
+<div class="span6">	
+  <div id="streeteasy">
   <h2>Neighborhood Rental Info</h2><h3> provided by <a href="http://www.streeteasy.com" target="_blank"><img src="/logo_255.png" height="35px" style="padding-left:10px;"/></a><h3>
     <table>
 	<th>Bedrooms</th>
@@ -171,7 +209,39 @@ addLoadEvent(function() {
 	<td><%= number_with_delimiter(@building.streeteasy_2br.second, :delimiter => ',') %> sqft</td>
 	<td><%= link_to @building.streeteasy_2br.third, @building.streeteasy_2br.fourth %></td>
 	</table>
-	<div id="laundromats">
+	</div>
+	</div>
+<div class="span6">
+  <div id="foursquare">
+  <h2>Nearby Businesses</h2><h3>recommended by<a href="http://www.foursquare.com" target="_blank"><img src="/foursquare-logo.png" height="25px" style="padding-left:10px;"></a></h3>
+	    <table>
+	    <tr><td><h4><%= link_to @building.foursquare_explore[0]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[0]['venue']['id']}"  %>
+		        </h4><%= @building.foursquare_explore[0]['venue']['categories'][0]['name']  %>
+	            <h6><%= @building.foursquare_explore[0]['reasons']['items'][0]['message'] %></h6></td>
+				<td><%= image_tag("#{@building.foursquare_explore[0]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
+	    </tr>
+		<tr><td><h4><%= link_to @building.foursquare_explore[1]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[1]['venue']['id']}"   %>
+			    </h4><%= @building.foursquare_explore[1]['venue']['categories'][0]['name']   %>
+			    <h6><%= @building.foursquare_explore[1]['reasons']['items'][0]['message'] %></h6></td>
+			<td><%= image_tag("#{@building.foursquare_explore[1]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
+		</tr>
+		<tr><td><h4><%= link_to @building.foursquare_explore[2]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[2]['venue']['id']}"  %>
+			    </h4><%= @building.foursquare_explore[2]['venue']['categories'][0]['name']  %>
+			    <h6><%= @building.foursquare_explore[2]['reasons']['items'][0]['message'] %></h6></td>
+			<td><%= image_tag("#{@building.foursquare_explore[2]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
+		</tr>
+		<tr><td><h4><%= link_to @building.foursquare_explore[3]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[3]['venue']['id']}"  %>
+			    </h4><%= @building.foursquare_explore[3]['venue']['categories'][0]['name']   %>
+			    <h6><%= @building.foursquare_explore[3]['reasons']['items'][0]['message'] %></h6></td>
+			<td><%= image_tag("#{@building.foursquare_explore[3]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
+		</tr>
+		</table>
+	</div>
+</div>
+</div>
+<div class="row">
+<div class="span6">		
+  <div id="laundromats">
 	<h2>Closest Laundromat</h2>
 	<h3>registered with NYC</h3>
 	<table>
@@ -180,66 +250,8 @@ addLoadEvent(function() {
 	</table>
 	</div>
 </div>
-
-</div>
-<div class="span8">
-    <h2><%= @building.incidents.isclosed.count %>
-	<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
-	<% else %> Closed Complaints </h2><% end %>
-      
-<div>
-<% unless @incidents_closed.empty? %>
-<div id="incidents_closed">
-<table summary="building incidents">
-	<thead>
-	  <th>Complaint About</th>
-	  <th>Reported</th>
-	  <th>Time to Close</th>
-	</thead>      
-<%= render :partial => @incidents_closed %>
-	<script>
-	$(document).ready(function() {
-	    $('.pagination a').attr('data-remote', 'true');
-	});</script></div>
-</table>
-
-	<% if @incidents_closed.next_page %>
-	  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page, :remote => :true) %><br><br><br></center>
-
-	<% end %>
-</div>	
-<% else %>
-	</table>      
-	<h4><center>Remember: Be Thorough!
-	  <br>No complaints does not guarantee this is a good building.<br><br><br><br></center></h4>	
-<% end %>
-<div id="foursquare">
-	
-  <h2>Nearby Businesses</h2><h3>recommended by<a href="http://www.foursquare.com" target="_blank"><img src="/foursquare-logo.png" height="25px" style="padding-left:10px;"></a></h3>
-    <table>
-    <tr><td><h4><%= link_to @building.foursquare_explore[0]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[0]['venue']['id']}"  %>
-	        </h4><%= @building.foursquare_explore[0]['venue']['categories'][0]['name']  %>
-            <h6><%= @building.foursquare_explore[0]['reasons']['items'][0]['message'] %></h6></td>
-			<td><%= image_tag("#{@building.foursquare_explore[0]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
-    </tr>
-	<tr><td><h4><%= link_to @building.foursquare_explore[1]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[1]['venue']['id']}"   %>
-		    </h4><%= @building.foursquare_explore[1]['venue']['categories'][0]['name']   %>
-		    <h6><%= @building.foursquare_explore[1]['reasons']['items'][0]['message'] %></h6></td>
-		<td><%= image_tag("#{@building.foursquare_explore[1]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
-	</tr>
-	<tr><td><h4><%= link_to @building.foursquare_explore[2]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[2]['venue']['id']}"  %>
-		    </h4><%= @building.foursquare_explore[2]['venue']['categories'][0]['name']  %>
-		    <h6><%= @building.foursquare_explore[2]['reasons']['items'][0]['message'] %></h6></td>
-		<td><%= image_tag("#{@building.foursquare_explore[2]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
-	</tr>
-	<tr><td><h4><%= link_to @building.foursquare_explore[3]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[3]['venue']['id']}"  %>
-		    </h4><%= @building.foursquare_explore[3]['venue']['categories'][0]['name']   %>
-		    <h6><%= @building.foursquare_explore[3]['reasons']['items'][0]['message'] %></h6></td>
-		<td><%= image_tag("#{@building.foursquare_explore[3]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
-	</tr>
-	</table>
-</div> 
-<div id="subways">
+<div class="span6">
+  <div id="subways">
 <h2>Subway Stations</h2>
 <table>
 	<tr><th>Station</th>
@@ -268,4 +280,5 @@ addLoadEvent(function() {
 <% end %>
 </table>
 </div> 
+</div>
 </div>

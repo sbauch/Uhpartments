@@ -103,7 +103,7 @@ addLoadEvent(function() {
 		    }
 		  </script>
 		<br>
-		 <h2>GRADE: </h2>
+		 <h2 style="line-height:36px;">GRADE: </h2>
 		<% if @building.score == "A" %><h2 style="text-align:center;font-size:52px"><%= @building.score %></h2>
 		<% elsif @building.score == "B" %><h2 style="color:#283f85;text-align:center;font-size:52px"><%= @building.score %></h2>
 		<% elsif @building.score == "C" %><h2 style="color:#F4CC37;text-align:center;font-size:52px"><%= @building.score %></h2>
@@ -111,8 +111,6 @@ addLoadEvent(function() {
 		<% elsif @building.score == "F" %><h2 style="color:#B4372F;text-align:center;font-size:52px"><%= @building.score %></h2>
 		<% end %>
 		</div>
-		<br>
-		<br>
 	</div>
 <div class="row"><br><br>
 <div class="span6">
@@ -185,23 +183,19 @@ addLoadEvent(function() {
     <table>
 	<th>Bedrooms</th>
 	<th>Average Rental Price</th>
-	<th>Average Square Feet</th>
-	<th>Current Listings</th>		
+	<th>Average Square Feet</th>		
 	</tr>		
 	<td><p>Studio</p></td>		
 	<td>$<%= number_with_delimiter(@building.streeteasy_0br.first, :delimiter => ',') %></td>
 	<td><%= number_with_delimiter(@building.streeteasy_0br.second, :delimiter => ',') %> sqft</td>
-	<td><%= link_to @building.streeteasy_0br.third, @building.streeteasy_0br.fourth %></td>
 	</tr>		
 	<td><p>1 BR</p></td>		
 	<td>$<%= number_with_delimiter(@building.streeteasy_1br.first, :delimiter => ',') %></td>
 	<td><%= number_with_delimiter(@building.streeteasy_1br.second, :delimiter => ',') %> sqft</td>
-	<td><%= link_to @building.streeteasy_1br.third, @building.streeteasy_1br.fourth %></td>
 	</tr>
 	<td><p>2 BR</p></td>		
 	<td>$<%= number_with_delimiter(@building.streeteasy_2br.first, :delimiter => ',') %></td>
 	<td><%= number_with_delimiter(@building.streeteasy_2br.second, :delimiter => ',') %> sqft</td>
-	<td><%= link_to @building.streeteasy_2br.third, @building.streeteasy_2br.fourth %></td>
 	</table>
 	</div>
 	</div>

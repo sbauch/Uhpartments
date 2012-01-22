@@ -15,6 +15,7 @@ gem 'therubyracer', require: 'v8'
 gem 'geocoder'
 gem 'google-analytics-rails', :git => 'git://github.com/bgarret/google-analytics-rails.git'
 gem 'twiliolib'
+gem 'dalli'
 
 # Gems used only for assets and not required
 # in production environments by default.

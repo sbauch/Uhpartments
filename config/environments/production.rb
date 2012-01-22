@@ -3,6 +3,9 @@ Badnycm::Application.configure do
   config.assets.compile = true  
   
   # Settings specified here will take precedence over those in config/application.rb
+  
+  #caching!
+  config.cache_store = :dalli_store
 
   # # Google Analytics
    GA.tracker = "UA-27951205-1"

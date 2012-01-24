@@ -70,21 +70,25 @@
 			<br>
 			Just because a building isn't listed <br>doesn't mean it's problem free!
 	</div>
-  <div class="span6">
+  <div class="span4">
 	<br>
 	<br>
 	<h2>Uhpartments Nearby</h2>
-
+<% unless @buildings.count ==0 %>
 <center><table>
 <% @buildings.each do |b| %>
   <tr>
     <td><%= link_to b.address, b %></td>
-  </tr>
+    <td><%= b.score %>
+	  </tr>
 <% end %>
 </table>
 <% if @buildings.next_page %>
 
 <center><%= link_to "More", params.merge(page: @buildings.next_page) %></center>
+<% end %>
+<% else %>
+<h3>No Uhpartments in your area.<h3>
 <% end %>
 
 </center>

@@ -1,8 +1,9 @@
 class Building < ActiveRecord::Base
-attr_accessible :lat, :lon
+attr_accessible :lat, :lon, :address, :city, :state, :zip
 reverse_geocoded_by :lat, :lon
 WillPaginate.per_page = 25
 has_many :incidents, :class_name => "Incident", :foreign_key => 'building_address', :primary_key => 'address',
+
 end
 
 public
@@ -32,7 +33,7 @@ def score
     @score = "C"
   elsif self.incidents_count < 25 and self.incidents_count >= 5
     @score = "B"
-  elsif self.incidents_count < 5 and self.incidents_count >= 0
+  elsif self.incidents_count < 5 and self.incidents_count > 0
     @score = "A"
   elsif self.incidents_count = 0
     @score = "A+"

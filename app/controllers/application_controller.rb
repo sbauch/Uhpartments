@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
       session[:mobile_param] = params[:mobile] if params[:mobile]
       request.format = :mobile if mobile_device?
     end
+    def after_sign_in_path_for(resource)
+        "/brokers"
+      end
+      
+    def after_sign_out_path_for(resource)
+      "/brokers"
+    end
+
 end

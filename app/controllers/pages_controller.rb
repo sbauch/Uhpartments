@@ -44,6 +44,10 @@ class PagesController < ApplicationController
   end
   
   def home
+    if user_signed_in? 
+      redirect_to "/brokers" 
+      end
+    
   end
 
   def about
@@ -53,5 +57,10 @@ class PagesController < ApplicationController
   end
   
   def brokers
+  if user_signed_in? && current_user.subscription.nil? 
+    redirect_to '/subscriptions/new'
+  end
+  
+  
   end 
 end

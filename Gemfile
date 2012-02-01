@@ -16,6 +16,11 @@ gem 'geocoder'
 gem 'google-analytics-rails', :git => 'git://github.com/bgarret/google-analytics-rails.git'
 gem 'twiliolib'
 gem 'dalli'
+gem 'devise'
+gem 'twitter_bootstrap_form_for'
+gem 'stripe'
+gem 'pdfkit'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,0 +1,189 @@
+<body>
+
+<div class="container">
+  <div class="content">
+    
+<div class="row">
+	<div class="span5">
+	<h2><%= @building.address %> <br>
+	<% if @building.city != @building.nabename.upcase %>
+		<%= @building.nabename.upcase %><br> <%= @building.city %> </h2>
+		<% else %>
+		<%= @building.city %><br>QUEENS </h2>
+		<% end %>
+		<br>
+		
+		<br>
+		 <h2>GRADE: </h2>
+		<% if @building.score == "A" %><h2 style="text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% elsif @building.score == "B" %><h2 style="color:#283f85;text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% elsif @building.score == "C" %><h2 style="color:#F4CC37;text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% elsif @building.score == "D" %><h2 style="color:#F46F51;text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% elsif @building.score == "F" %><h2 style="color:#B4372F;text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% end %>
+		</div>
+		<br>
+		<br>
+	</div>
+<div class="row"><br><br>
+<div class="span6">
+    <h2><%= @incidents_open.count %> 
+<% if @incidents_open.count == 1 %> Open Complaint</h2>
+<% else %> Open Complaints </h2>
+<% end %>
+		<div id="incidents_open">
+<% unless @incidents_open.empty? %>  
+<table summary="building incidents" id="incidents_open">
+    <thead>
+	  <th>Complaint About</th>
+	  <th>Reported</th>
+	  <th>Time to Close</th>
+	</thead>
+	<%= render :partial => @incidents_open %>
+	<script>
+	$(document).ready(function() {
+	    $('.pagination a').attr('data-remote', 'true');
+	});</script>
+	  </table>
+	<% if @incidents_open.next_page %>
+	  <center><%= link_to "More", params.merge(page: @incidents_open.next_page, :remote => :true) %><br><br><br></center>
+	<% end %>
+<% else %>
+<br><br>
+<h4><center>Remember: Be Thorough!
+	<br>No complaints does not guarantee <br>this is a good building.<br><br><br><br></center></h4>	
+<% end %>
+</div>
+</div>
+<div class="span6">
+	 <h2><%= @building.incidents.isclosed.count %>
+		<% if @incidents_closed.count == 1 %> Closed Complaint</h2>
+		<% else %> Closed Complaints </h2><% end %>
+
+	<div>
+	<% unless @incidents_closed.empty? %>
+	<div id="incidents_closed">
+	<table summary="building incidents">
+		<thead>
+		  <th>Complaint About</th>
+		  <th>Reported</th>
+		  <th>Time to Close</th>
+		</thead>      
+	<%= render :partial => @incidents_closed %>
+		<script>
+		$(document).ready(function() {
+		    $('.pagination a').attr('data-remote', 'true');
+		});</script></div>
+	</table>
+
+		<% if @incidents_closed.next_page %>
+		  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page, :remote => :true) %><br><br><br></center>
+
+		<% end %>
+	</div>	
+	<% else %>
+		</table>      
+		<h4><center>Remember: Be Thorough!
+		  <br>No complaints does not guarantee this is a good building.<br><br><br><br></center></h4>	
+	<% end %>
+	</div>
+	</div>
+	</div>
+<div class="row">
+<div class="span6">	
+  <div id="streeteasy">
+  <h2>Neighborhood Rental Info</h2><h3> provided by <a href="http://www.streeteasy.com" target="_blank"><img src="/logo_255.png" height="35px" style="padding-left:10px;"/></a><h3>
+    <table>
+	<th>Bedrooms</th>
+	<th>Average Rental Price</th>
+	<th>Average Square Feet</th>
+	<th>Current Listings</th>		
+	</tr>		
+	<td><p>Studio</p></td>		
+	<td>$<%= number_with_delimiter(@building.streeteasy_0br.first, :delimiter => ',') %></td>
+	<td><%= number_with_delimiter(@building.streeteasy_0br.second, :delimiter => ',') %> sqft</td>
+	<td><%= link_to @building.streeteasy_0br.third, @building.streeteasy_0br.fourth %></td>
+	</tr>		
+	<td><p>1 BR</p></td>		
+	<td>$<%= number_with_delimiter(@building.streeteasy_1br.first, :delimiter => ',') %></td>
+	<td><%= number_with_delimiter(@building.streeteasy_1br.second, :delimiter => ',') %> sqft</td>
+	<td><%= link_to @building.streeteasy_1br.third, @building.streeteasy_1br.fourth %></td>
+	</tr>
+	<td><p>2 BR</p></td>		
+	<td>$<%= number_with_delimiter(@building.streeteasy_2br.first, :delimiter => ',') %></td>
+	<td><%= number_with_delimiter(@building.streeteasy_2br.second, :delimiter => ',') %> sqft</td>
+	<td><%= link_to @building.streeteasy_2br.third, @building.streeteasy_2br.fourth %></td>
+	</table>
+	</div>
+	</div>
+<div class="span6">
+  <div id="foursquare">
+  <h2>Nearby Businesses</h2><h3>recommended by<a href="http://www.foursquare.com" target="_blank"><img src="/foursquare-logo.png" height="25px" style="padding-left:10px;"></a></h3>
+	    <table>
+	    <tr><td><h4><%= link_to @building.foursquare_explore[0]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[0]['venue']['id']}"  %>
+		        </h4><%= @building.foursquare_explore[0]['venue']['categories'][0]['name']  %>
+	            <h6><%= @building.foursquare_explore[0]['reasons']['items'][0]['message'] %></h6></td>
+				<td><%= image_tag("#{@building.foursquare_explore[0]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
+	    </tr>
+		<tr><td><h4><%= link_to @building.foursquare_explore[1]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[1]['venue']['id']}"   %>
+			    </h4><%= @building.foursquare_explore[1]['venue']['categories'][0]['name']   %>
+			    <h6><%= @building.foursquare_explore[1]['reasons']['items'][0]['message'] %></h6></td>
+			<td><%= image_tag("#{@building.foursquare_explore[1]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
+		</tr>
+		<tr><td><h4><%= link_to @building.foursquare_explore[2]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[2]['venue']['id']}"  %>
+			    </h4><%= @building.foursquare_explore[2]['venue']['categories'][0]['name']  %>
+			    <h6><%= @building.foursquare_explore[2]['reasons']['items'][0]['message'] %></h6></td>
+			<td><%= image_tag("#{@building.foursquare_explore[2]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
+		</tr>
+		<tr><td><h4><%= link_to @building.foursquare_explore[3]['venue']['name'], "http://www.foursquare.com/v/#{@building.foursquare_explore[3]['venue']['id']}"  %>
+			    </h4><%= @building.foursquare_explore[3]['venue']['categories'][0]['name']   %>
+			    <h6><%= @building.foursquare_explore[3]['reasons']['items'][0]['message'] %></h6></td>
+			<td><%= image_tag("#{@building.foursquare_explore[3]['venue']['categories'][0]['icon']['prefix']}44.png") %></td>
+		</tr>
+		</table>
+	</div>
+</div>
+</div>
+<div class="row">
+<div class="span6">		
+  <div id="laundromats">
+	<h2>Closest Laundromat</h2>
+	<h3>registered with NYC</h3>
+	<table>
+	<tr><td><%= @building.laundromats[0].name %><h6>This name appears on the city license</h6></td>
+		<td><%= number_with_delimiter(@building.distance, :delimiter => ',') %> feet</td></tr>
+	</table>
+	</div>
+</div>
+<div class="span6">
+  <div id="subways">
+<h2>Subway Stations</h2>
+<table>
+	<tr><th>Station</th>
+		<th>Trains</th></tr>
+<tr><td><h4><%= @building.subways[0].name %></h4><%= number_with_delimiter(@building.subway_distance1, :delimiter => ',') %> feet</td>
+	<td><%= image_tag("/t#{@building.subways[0].train1.downcase}cur.gif") %>  
+	<% unless @building.subways[0].train2.nil? %><%= image_tag("/t#{@building.subways[0].train2.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[0].train3.nil? %><%= image_tag("/t#{@building.subways[0].train3.downcase}cur.gif") %> <% end %>
+	<% unless @building.subways[0].train4.nil? %><%= image_tag("/t#{@building.subways[0].train4.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[0].train5.nil? %><%= image_tag("/t#{@building.subways[0].train5.downcase}cur.gif") %> <% end %></td></tr>
+<% unless @building.subways[1].train1 == @building.subways[0].train1 %>
+<tr><td><h4><%= @building.subways[1].name %></h4><%= number_with_delimiter(@building.subway_distance2, :delimiter => ',') %> feet</td>
+	<td><%= image_tag("/t#{@building.subways[1].train1.downcase}cur.gif") %>  
+	<% unless @building.subways[1].train2.nil? %><%= image_tag("/t#{@building.subways[1].train2.downcase}cur.gif") %> <% end %> 
+    <% unless @building.subways[1].train3.nil? %><%= image_tag("/t#{@building.subways[1].train3.downcase}cur.gif") %> <% end %>
+	<% unless @building.subways[1].train4.nil? %><%= image_tag("/t#{@building.subways[1].train4.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[1].train5.nil? %><%= image_tag("/t#{@building.subways[1].train5.downcase}cur.gif") %><% end %></td></tr>
+<% end %>
+<% unless @building.subways[2].train1 == @building.subways[0].train1 || @building.subways[2].train1 == @building.subways[1].train1  %>
+<tr><td><h4><%= @building.subways[2].name %></h4><%= number_with_delimiter(@building.subway_distance3, :delimiter => ',') %> feet</td>
+	<td><%= image_tag("/t#{@building.subways[2].train1.downcase}cur.gif") %>  
+	<% unless @building.subways[2].train2.nil? %><%= image_tag("/t#{@building.subways[2].train2.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[2].train3.nil? %><%= image_tag("/t#{@building.subways[2].train3.downcase}cur.gif") %> <% end %>
+	<% unless @building.subways[2].train4.nil? %><%= image_tag("/t#{@building.subways[2].train4.downcase}cur.gif") %> <% end %> 
+	<% unless @building.subways[2].train5.nil? %><%= image_tag("/t#{@building.subways[2].train5.downcase}cur.gif") %><% end %></td></tr>
+<% end %>
+</table>
+</div> 
+</div>
+</div>

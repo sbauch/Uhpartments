@@ -3,21 +3,7 @@
 
   </head>
   <body>
-	
-	  
-
-	  
-<div class="topbar">
-      <div class="fill">
-        <div class="container">
-          <div class="brand"><%= link_to "uh...partments", root_path %>
-	</div>
-          <ul class="nav">
-            <li><%= link_to "About", about_path %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<% unless user_signed_in? %>
 <div class="container">
 <div class="row">
 	<div class="span6">
@@ -98,4 +84,41 @@
 
 <br />
 </body>
+<% else %>
+<div class="container">
+<div class="row">
+	<div class="span6">
+<% unless @buildings.count ==0 %>
+<center><table>
+<% @buildings.each do |b| %>
+  <tr>
+    <td><%= link_to b.address, b %></td>
+    <td><%= b.score %>
+	  </tr>
+<% end %>
+</table>
+<% if @buildings.next_page %>
+
+<center><%= link_to "More", params.merge(page: @buildings.next_page) %></center>
+<% end %>
+<% else %>
+<h3>No Uhpartments in your area.<h3>
+<% end %>
+
+</center>
+</div>
+<div class="span6"><br><br>
+<center><h3>Not listed?<br>That means there are no recorded complaints to 311!</h3></center><br>
+
+<%= twitter_bootstrap_form_for(Building.new) do |f| %>
+  <%= f.hidden_field :address, :value => @address %>
+  <%= f.hidden_field :city, :value => @city %>
+  <%= f.hidden_field :zip, :value => @zip %>
+  <%= f.hidden_field :lat, :value => @lat %>
+  <%= f.hidden_field :lon, :value => @lon %>
+  <center><%= f.submit  'Create an A+ Uhpartments Report', :class => 'btn primary large' %></center>
+<% end %>
+
+</div>
+<% end %>
 

@@ -1,0 +1,56 @@
+<%= twitter_bootstrap_form_for @subscription do |f| %>
+  <% if @subscription.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+      <ul>
+      <% @subscription.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	</div>
+
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+	<%= f.hidden_field :stripe_card_token %>
+  </div>  
+<div class="row">
+	<div class="span6">
+		<h3>Billing Information</h3><br>
+      <p>Name on Card</p> <%= text_field_tag :cardholder, nil, name: nil %>
+  </div>
+</div>  
+
+<div class="row">
+	<div class="span6">
+		<br>
+      <p>Credit Card Number</p> <%= text_field_tag :card_number, nil, name: nil %>
+  </div>
+</div>  
+
+  <div class="row">
+	<div class="span6">
+		<br>
+	
+      <p>Security Code on Card (CVV)</p>
+      <%= text_field_tag :card_code, nil, name: nil %>
+  </div>
+</div>  
+
+  <div class="row">
+	<div class="span6">
+	<br>
+   <p>Card Expiration</p>
+    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"},%>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
+
+
+<div id="stripe_error">
+	<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+	  </div>
+  <div class="actions"><%= f.submit "Subscribe" %></div>
+  </div>
+</div>
+<% end %>

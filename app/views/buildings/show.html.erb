@@ -1,4 +1,4 @@
-<head>
+<head>	
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <style>#map{border:1px solid #000; width:250px; height:180px;padding-left: 20px;-webkit-box-shadow: 5px 5px 5px #4B5470;
 	box-shadow: 5px 5px 5px #4B5470}</style>
@@ -59,10 +59,9 @@ addLoadEvent(function() {
     </script>
   </head>
   <body>
-
 <div class="container">
   <div class="content">
-    
+    <div id="pdf"><% if user_signed_in? %><p><%= link_to "Download PDF", building_path(@building, :format => "pdf") %></p><% end %></div>
 <div class="row">
 	<div class="span5">
 	<h2><%= @building.address %> <br>
@@ -71,7 +70,7 @@ addLoadEvent(function() {
 		<% else %>
 		<%= @building.city %><br>QUEENS </h2>
 		<% end %>
-		<br>
+	
 		<div id="map"></div> 
 		<script>
 		 var lat = <%= @building.lat %>
@@ -106,9 +105,9 @@ addLoadEvent(function() {
 		      })(marker, i));
 		    }
 		  </script>
-		<br>
+			<br>
 		 <h2>GRADE: </h2>
-		<% if @building.score == "A" %><h2 style="text-align:center;font-size:52px"><%= @building.score %></h2>
+		<% if @building.score == "A" || "A+" %><h2 style="text-align:center;font-size:52px"><%= @building.score %></h2>
 		<% elsif @building.score == "B" %><h2 style="color:#283f85;text-align:center;font-size:52px"><%= @building.score %></h2>
 		<% elsif @building.score == "C" %><h2 style="color:#F4CC37;text-align:center;font-size:52px"><%= @building.score %></h2>
 		<% elsif @building.score == "D" %><h2 style="color:#F46F51;text-align:center;font-size:52px"><%= @building.score %></h2>
@@ -116,11 +115,10 @@ addLoadEvent(function() {
 		<% end %>
 		</div>
 		<br>
-		<br>
 	   <right><div id="panorama" class="span7"></right></div>
 
 	</div>
-<div class="row"><br><br>
+<div class="row"><br>
 <div class="span6">
     <h2><%= @incidents_open.count %> 
 <% if @incidents_open.count == 1 %> Open Complaint</h2>
@@ -172,14 +170,14 @@ addLoadEvent(function() {
 	</table>
 
 		<% if @incidents_closed.next_page %>
-		  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page, :remote => :true) %><br><br><br></center>
+		  <center><%= link_to "More", params.merge(page: @incidents_closed.next_page, :remote => :true) %><br></center>
 
 		<% end %>
 	</div>	
 	<% else %>
 		</table>      
 		<h4><center>Remember: Be Thorough!
-		  <br>No complaints does not guarantee this is a good building.<br><br><br><br></center></h4>	
+		  <br>No complaints does not guarantee <br>this is a good building.<br><br><br><br></center></h4>	
 	<% end %>
 	</div>
 	</div>
@@ -187,7 +185,7 @@ addLoadEvent(function() {
 <div class="row">
 <div class="span6">	
   <div id="streeteasy">
-  <h2>Neighborhood Rental Info</h2><h3> provided by <a href="http://www.streeteasy.com" target="_blank"><img src="/logo_255.png" height="35px" style="padding-left:10px;"/></a><h3>
+  <h2 style="page-break-before:always">Neighborhood Rental Info</h2><h3> provided by <a href="http://www.streeteasy.com" target="_blank"><img src="/logo_255.png" height="35px" style="padding-left:10px;"/></a><h3>
     <table>
 	<th>Bedrooms</th>
 	<th>Average Rental Price</th>
@@ -252,7 +250,7 @@ addLoadEvent(function() {
 </div>
 <div class="span6">
   <div id="subways">
-<h2>Subway Stations</h2>
+<h2 style="page-break-before:always">Subway Stations</h2>
 <table>
 	<tr><th>Station</th>
 		<th>Trains</th></tr>

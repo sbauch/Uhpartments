@@ -1,4 +1,9 @@
 Badnycm::Application.routes.draw do
+  resources :subscriptions
+
+  devise_for :users, :controllers => { :registrations => "registrations" }
+  
+
   resources :subways
 
   resources :laundromats
@@ -13,7 +18,8 @@ Badnycm::Application.routes.draw do
   resources :incidents
   resources :buildings
   resources :users
-  post '/set_geolocation' => 'users#set_geolocation'
+  get '/geocode', :controller => :buildings, :action => :index 
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

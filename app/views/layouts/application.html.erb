@@ -2,25 +2,33 @@
 <html>
 <head>
   <title>uhpartments</title>
-  <%= stylesheet_link_tag 'application-all' %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application-all', :media => 'all' %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>  <%= csrf_meta_tags %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   <%= analytics_init if Rails.env.production? %>
-<meta name="format-detection" content="telephone=no" />
+  <meta name="format-detection" content="telephone=no" />
 
 </head>
-<div class="topbar">
-<div class="fill">
+<div class="topbar" id="nav">
+<div class="fill" id="fill">
 <div class="container">
-<div class="brand"><%= link_to "uh...partments", root_path %>
+<% if user_signed_in? %><div class="brand"><%= link_to "Uhpartments for Brokers", '/brokers' %>
+</div>
+<ul class="nav">
+  <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+	</div>
+<% else %>
+<div class="brand"><%= link_to "uh...parments", root_path %>
 	</div>
           <ul class="nav">
             <li><%= link_to "About", about_path %></li>
+<% end %>
           </ul>
         </div>
       </div>
     </div>
 <body>
+	       <p class="alert"><%= alert %></p>
 
 <%= yield %>
 

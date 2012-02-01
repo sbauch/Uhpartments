@@ -2,8 +2,15 @@ class BuildingsController < ApplicationController
   # GET /buildings
   # GET /buildings.json
   def index
-      lat = params[:lat]
-       lon = params[:lon]
+       address = Geocoder.search("#{params[:address]} nyc")[0].formatted_address
+       address_split = address.split(",")
+       @address = address_split[0].upcase
+       @city = address_split[1].upcase.strip
+       @zip = address_split[2].split(" ")[1]
+       lat = params[:lat] || Geocoder.search("#{params[:address]} nyc")[0].geometry['location']['lat']
+       lon = params[:lon] || Geocoder.search("#{params[:address]} nyc")[0].geometry['location']['lng']
+       @lat = lat
+       @lon = lon
        #@buildings = Building.where("ST_Distance(latlon, 'POINT ("+lon.to_s+" "+ lat.to_s + ")') < 200")
        @buildings = Building.near([lat, lon], 0.1 ).page(params[:page]).per_page(10)
     respond_to do |format|
@@ -23,8 +30,14 @@ class BuildingsController < ApplicationController
       format.html # show.html.erb
       format.js
       format.json { render json: @building }
+      format.pdf {               
+                       headers["Uhpartments Report"] = "attachment; filename=\"#{@building.address}\""
+                       kit = PDFKit.new(html) 
+                       kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/all/bootstrap2.css"
+                       send_data kit.to_pdf, :filename => "file.pdf", :type => :pdf}
     end
   end
+
   # def set_geolocation
   #   #session[:location] = "'POINT (-74.03576870006731 40.7191652733036)') < 100"
   # 

@@ -25,12 +25,17 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   # GET /subscriptions/new.json
   def new
+    if current_user.subscription.nil?
     @subscription = Subscription.new
     @subscription.user_id = current_user.id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @subscription }
     end
+  else
+    redirect_to '/brokers' 
+  end
+     
   end
 
   # GET /subscriptions/1/edit

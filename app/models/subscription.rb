@@ -2,7 +2,7 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   
   attr_accessor :stripe_card_token
-  attr_accessible :stripe_card_token
+  attr_accessible :stripe_card_token, :user_id
   
 def save_with_payment
     if valid?

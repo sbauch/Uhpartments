@@ -50,6 +50,7 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save_with_payment
+        Confirmation.welcome_email(@subscription).deliver
         format.html { redirect_to '/brokers', notice: 'Subscription was successfully created.' }
         format.json { render json: @subscription, status: :created, location: @subscription }
       else

@@ -1,5 +1,7 @@
 Badnycm::Application.configure do
   
+  config.action_mailer.delivery_method = :smtp
+  
   config.assets.compile = true  
   
   # Settings specified here will take precedence over those in config/application.rb
@@ -11,7 +13,7 @@ Badnycm::Application.configure do
    GA.tracker = "UA-27951205-1"
   
   ## httparty allow pipe in URI
-  URI::DEFAULT_PARSER = 
+     URI::DEFAULT_PARSER = 
      URI::Parser.new(:UNRESERVED => URI::REGEXP::PATTERN::UNRESERVED + '|')
   
   # Code is not reloaded between requests

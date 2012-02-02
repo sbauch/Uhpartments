@@ -1,5 +1,5 @@
 class Confirmation < ActionMailer::Base  
-  default from: "clients@uhpartments.com"
+  default from: "Upartments@uhpartments.com"
   
    def welcome(subscription)
       @chargedate = (Date.today + 30.days).to_formatted_s(:long_ordinal)

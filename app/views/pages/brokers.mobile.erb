@@ -1,0 +1,71 @@
+<div class="topbar">
+      <div class="fill">
+        <div class="container">
+          	<div class="brand"><%= link_to "Uhpartments for Brokers", '/brokers' %>
+		</div>
+		<% if user_signed_in? %>
+		<ul class="nav">
+		  <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+			</div>
+			<% else %>
+		<ul class="nav">
+		  <li><%= link_to "Sign In", new_user_session_path %></li>
+			</div>
+			<% end %>
+        </div>
+      </div>
+    </div>
+<div class="container">
+  <div class="content">
+	<% if user_signed_in? %>
+	<div class="page-header">
+		<center><h3>Welcome back, <%= current_user.first_name%>!</h1></center>
+		</div>
+		<div class="page-header">
+				<center><h3>Search an address:<h2>
+			<form align="center" action="geocode">
+			<input type="text" name="address"/>
+			<input type="submit" class="btn primary" value="Show me the report">
+		</div>
+		<div class="row"><div class="span12">
+			<center><h3>Questions? Comments? Feedback?</h3>
+				    <h3>Contact us at <%= mail_to "clients@uhpartments.com" %></h3><br>
+				<p>Your card will be charged on <%= (current_user.subscription.created_at + 30.days).to_date %> 		
+	<% else %>
+	<div class="page-header">
+		<center><h1>Uhpartments for Brokers</h1></center>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<center><h3>Provide your clients with Uhpartments Reports</h3>
+			<img src="/report1.png" width="380px">
+			</div>
+			</div>
+   <div class="row">
+	<div class="span4">
+
+	<br><center>
+		
+			<h2>Inventory Control<br></h2>
+				<h3>Show apartments knowing<br> they're well maintained</h3>
+				</div>
+
+				<div class="span4">
+<br><center>
+
+						<h2>Confidence<br></h2>
+							<h3>Uhpartments builds confidence.<br>Confident consumers sign leases</h3>				
+				
+			</div>
+			<div class="span4">
+<br><center>
+					<h2>Sales Collateral<br></h2>
+						<h3>Close more deals faster with Uhpartments Reports</h3>
+						</div>
+						<div class="row">
+							<div class="span12" style="margin-top:40px">
+	 <center> <form method="get" action="/users/sign_up"><input class="btn primary large" type="submit" value="Start Your 30 Day Free Trial Now!"/></form> 
+		<h6>Credit Card required. $49 per month thereafter</h6><br><br><br><br> 
+		</div>
+	</div>
+	<% end %>

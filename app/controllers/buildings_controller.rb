@@ -1,4 +1,5 @@
 class BuildingsController < ApplicationController     
+  load_and_authorize_resource
   # GET /buildings
   # GET /buildings.json
   def index
@@ -71,7 +72,7 @@ class BuildingsController < ApplicationController
 
   # POST /buildings
   # POST /buildings.json
-  def create
+  def create 
     @building = Building.new(params[:building])
 
     respond_to do |format|

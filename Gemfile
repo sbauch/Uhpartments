@@ -20,6 +20,8 @@ gem 'devise'
 gem 'twitter_bootstrap_form_for'
 gem 'stripe'
 gem 'pdfkit'
+gem "cancan"
+
 
 
 # Gems used only for assets and not required

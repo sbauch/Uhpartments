@@ -16,15 +16,16 @@
 		<center><h1>Uhpartments for Brokers</h1></center>
 	</div>
 <div class="row">
-<div class="span8">
+<div class="span6">
 <%= twitter_bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <%= f.email_field :email %>
 
   <%= f.password_field :password %>
 
-    <%= f.check_box :remember_me, 'Remember Me'  %> 
 
-<%= f.submit "Sign in" %>
+<center><%= f.submit "Sign in" %>
 <% end %>
-
+</div>
+<div class="span6">
 <%= render :partial => "devise/shared/links" %>
+</div>

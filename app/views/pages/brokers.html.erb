@@ -29,7 +29,7 @@
 		</div>
 		<div class="row"><div class="span12">
 			<center><h3>Questions? Comments? Feedback?</h3>
-				    <h3>Contact us at clients@uhpartments.com</h3><br>
+				    <h3>Contact us at <%= mail_to "clients@uhpartments.com" %></h3><br>
 				<p>Your card will be charged on <%= (current_user.subscription.created_at + 30.days).to_date %> 		
 	<% else %>
 	<div class="page-header">

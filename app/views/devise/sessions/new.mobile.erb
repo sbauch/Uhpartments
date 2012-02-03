@@ -1,0 +1,29 @@
+<div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <ul class="nav">
+		    <li><%= link_to "Sign In", new_user_session_path %></li>
+          	<li><%= link_to "Sign Up", new_user_registration_path %></li> 
+         </ul>
+        </div>
+      </div>
+    </div>
+<div class="container">
+  <div class="content">
+	<div class="page-header">
+		<center><h1>Uhpartments for Brokers</h1></center>
+	</div>
+<div class="row">
+<div class="span6">
+<%= twitter_bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <%= f.email_field :email %>
+
+  <%= f.password_field :password %>
+
+
+<center><%= f.submit "Sign in" %>
+<% end %>
+</div>
+<div class="span6">
+<%= render :partial => "devise/shared/links" %>
+</div>

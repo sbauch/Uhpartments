@@ -3,6 +3,7 @@ class BuildingsController < ApplicationController
   # GET /buildings
   # GET /buildings.json
   def index
+  
        address = Geocoder.search("#{params[:address]} nyc")[0].formatted_address
        address_split = address.split(",")
        @address = address_split[0].upcase

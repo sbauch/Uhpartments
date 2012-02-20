@@ -57,6 +57,9 @@ class PagesController < ApplicationController
   end
   
   def brokers
+    if mobile_device?
+      redirect_to 'root#path'
+    end
     if user_signed_in?
       if current_user.subscription.nil?
         redirect_to '/subscriptions/new'

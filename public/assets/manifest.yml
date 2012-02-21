@@ -7,6 +7,7 @@ js/tests/index.html: js/tests/index-253108998c386c5addd8a309e2d985aa.html
 favicon.ico: favicon-490bcc86765b4fa17ca5d83e112135cf.ico
 iphone.png: iphone-71358bcbaea1f8174bd4af4080fc80d7.png
 application.js: application-3d894df3d1594b11fe00acb03f2eb0f4.js
+impress.js: impress-58d1f6ef4e901b34d749735115a56ea5.js
 subscriptions.js=: subscriptions.js=
 themes/apple/img/activeButton.png: themes/apple/img/activeButton-7100626ef8096d01a6510dd77f3e40f5.png
 themes/apple/img/backButton.png: themes/apple/img/backButton-0749a96dfd7fdaaa3298caebd2cb4250.png

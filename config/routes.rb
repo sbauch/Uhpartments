@@ -10,8 +10,10 @@ Badnycm::Application.routes.draw do
 
   root :to => 'pages#home'
   match '/about',   :to => 'pages#about'
+  match '/pro', :to => 'pages#brokers'
   match '/brokers', :to => 'pages#brokers'
   match '/how', :to => 'pages#how'
+  match '/demo', :to => 'pages#demo'
   get :twilio, :controller => :pages
   post :twilio, :controller => :pages
   resources :pages

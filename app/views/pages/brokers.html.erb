@@ -1,7 +1,7 @@
 <div class="topbar">
       <div class="fill">
         <div class="container">
-          	<div class="brand"><%= link_to "Uhpartments for Brokers", '/brokers' %>
+          	<div class="brand"><%= link_to "UhpartmentsPro", '/pro' %>
 		</div>
 		<% if user_signed_in? %>
 		<ul class="nav">
@@ -33,7 +33,7 @@
 				<p>Your card will be charged on <%= (current_user.subscription.created_at + 30.days).to_date %> 		
 	<% else %>
 	<div class="page-header">
-		<center><h1>Uhpartments for Brokers</h1></center>
+		<center><h1>Uhpartments for Professionals</h1></center>
 	</div>
 	<div class="row">
 		<div class="span12">

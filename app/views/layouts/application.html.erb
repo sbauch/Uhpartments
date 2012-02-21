@@ -12,7 +12,7 @@
 <div class="topbar" id="nav">
 <div class="fill" id="fill">
 <div class="container">
-<% if user_signed_in? %><div class="brand"><%= link_to "Uhpartments for Brokers", '/brokers' %>
+<% if user_signed_in? %><div class="brand"><%= link_to "UhpartmentsPro", '/pro' %>
 </div>
 <ul class="nav">
   <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
@@ -31,6 +31,6 @@
 	       <p class="alert"><%= alert %></p>
 
 <%= yield %>
-
+<%= javascript_include_tag 'impress' %>
 </body>
 </html>

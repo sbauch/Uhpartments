@@ -19,11 +19,11 @@ class ApplicationController < ActionController::Base
       request.format = :mobile if mobile_device?
     end
     def after_sign_in_path_for(resource)
-        "/brokers"
+        "/pro"
       end
       
     def after_sign_out_path_for(resource)
-      "/brokers"
+      "/pro"
     end
 
 end

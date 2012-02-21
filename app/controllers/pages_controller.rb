@@ -66,5 +66,8 @@ class PagesController < ApplicationController
   end
 end
   
+  end
+   
+  def demo 
   end 
 end

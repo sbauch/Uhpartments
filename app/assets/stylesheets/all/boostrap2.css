@@ -2656,3 +2656,27 @@ body { 	 margin: 0;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.56);
   -webkit-font-smoothing: antialiased;
 }
+
+#buildings {
+    z-index: 9999;
+    position: fixed; bottom: 0;
+}
+.step {height: 600px; width: 10000px;
+	 text-align: center;    
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing:    border-box;
+	    -ms-box-sizing:     border-box;
+	    -o-box-sizing:      border-box;
+	    box-sizing:         border-box;
+
+	    -webkit-transition: opacity 1s;
+	    -moz-transition:    opacity 1s;
+	    -ms-transition:     opacity 1s;
+	    -o-transition:      opacity 1s;
+	    transition:         opacity 1s;
+
+	    text-shadow: rgba(0,0,0,.01) 0 0 1px; /* Chrome @font-face anti-aliasing fix */
+	}
+
+	.step:not(.active) { opacity: 0.1; }
+

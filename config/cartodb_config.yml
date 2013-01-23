@@ -1,13 +1,7 @@
 #############################
 # CartoDB Credentials
 #############################
-host: 'https://badnyc.cartodb.com'
-oauth_key: 'RX8PXS8K6YlXerxEgg2kg3Ki4OQhnR9F6ggUBAzw'
-oauth_secret: 'D1emiRWQUOW72543Dy7Gh6dsWyJQXVCahc4ZsoJ7'
-#oauth_access_token:
-#oauth_access_token_secret:
-username: 'sbauch@gmail.com'
-password: '@##csa3141598'
+
 
 # cache_timeout: 60
 # debug: true
